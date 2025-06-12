@@ -1,0 +1,421 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.logo {
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+#logo-icon{
+    width: 30px;
+    height: 40px;
+    margin-right: 15px;
+}
+
+#logo-name{
+    margin-top: 10px;
+    width: 8rem;
+    height: 28px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 18% 82%;
+    grid-template-rows: 50px minmax(0, 1fr);
+    height: 100vh;
+    grid-template-areas: 
+        "sidebar teachers-navbar"
+        "sidebar contentFrame";
+    transition: all 0.3s ease; 
+    overflow: hidden;
+}
+
+.container-shrink{
+    overflow: hidden;
+    grid-template-columns: 5% 95%;
+    grid-template-areas: 
+        "sidebar contentFrame"
+        "sidebar contentFrame";
+}
+
+.container-shrink iframe {
+    grid-area: contentFrame;
+    width: 100%;
+    height: 100vh;
+    border: none;
+    transition: margin-top 0.3s ease; 
+}
+
+/* Hamburger menu styling - Hidden by default, only visible on mobile */
+.hamburger-menu {
+    display: none; /* Hide by default on larger screens */
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    height: 24px;
+    width: 30px;
+    z-index: 1001;
+}
+
+.bar {
+    width: 100%;
+    height: 3px;
+    background-color: #67818E;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+/* Hamburger active state */
+.hamburger-menu.active .bar:nth-child(1) {
+    transform: translateY(10.5px) rotate(45deg);
+}
+
+.hamburger-menu.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active .bar:nth-child(3) {
+    transform: translateY(-10.5px) rotate(-45deg);
+}
+
+/* Position for active state */
+.sidebar.mobile-open .hamburger-menu.active {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+}
+
+/* Overlay for mobile */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    border-right: 2px solid #FF7675;
+    height: 100vh;
+    z-index: 999;
+    background-color: #FFFFFF;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 0; /* Hide the scrollbar */
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.sidebar.shrink {
+    width: 70px;
+    min-width: 70px;
+    padding: 10px;
+}
+
+.sidebar.shrink .logo #logo-name,
+.sidebar.shrink .sidebar-item span {
+    display: none; /* Hide text */
+}
+.sidebar.shrink .logo{
+    margin-left: 0;
+}
+
+.sidebar.shrink .sidebar-item img {
+    margin-right: 0; /* Center icons */
+    margin-top: 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-item-container {
+    margin-top: 30%;
+    margin-bottom: 30px;
+}
+
+.sidebar-item {
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    font-weight: normal;
+    font-size: 14px;
+    margin-top: 25px;
+    color: #686868;
+    transition: all 0.3s ease;
+}
+
+.sidebar-item2 {
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    font-weight: normal;
+    font-size: 14px;
+    margin-top: 25px;
+    transition: all 0.3s ease;
+}
+
+.sidebar-logo-cover{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.sidebar-item img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+.sidebar-item2 img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+#log-out-anchor{
+    text-decoration: none;
+}
+#log-out{
+    width: 120px;
+    color: #686868;
+    margin: 0;
+}
+
+.icon-arrow{
+    margin-left: 5px;
+    width: 20px;
+    height: 25px;
+}
+
+.sidebar-item.active {
+    font-weight: bold;
+    color: #67818E;
+}
+
+.teachers-navbar {
+    grid-area: teachers-navbar;
+    background-color: #FFFFFF;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    top: 0;
+    transition: transform 0.3s ease; 
+}
+
+.teachers-navbar.hidden {
+    transform: translateY(-100%); /* Hide navbar */
+}
+
+.teachers-navbar .teachers-navbar-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    color: #252641;
+    font-size: 18px;
+}
+
+.nav-profile-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #C8F7DC;
+    margin-right: 2rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #C8F7DC;
+    border-right: 2px solid #34C471;
+    border-bottom: 2px solid #34C471;
+    transform: rotateZ(-65deg);
+}
+
+.nav-profile-logo img {
+    width: 15px;
+    height: 15px;
+    margin-left: 2px;
+    object-fit: cover;
+    transform: rotateZ(65deg);
+}
+
+.bell-icon {
+    margin-right: 3rem;
+    width: 30px;
+    height: 30px;
+}
+
+#welcome-back-heading {
+    margin-left: 50px;
+    margin-top: 30px;
+}
+
+iframe {
+    grid-area: contentFrame;
+    width: 100%;
+    height: calc(100vh - 50px);
+    border: none;
+    transition: margin-top 0.3s ease; 
+}
+
+.teachers-navbar.hidden + iframe {
+    margin-top: 0; /* Adjust iframe position */
+}
+
+.dropdown-content {
+    display: none;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .dropdown.open .dropdown-content {
+    display: block;
+    opacity: 1;
+    max-height: 500px;
+  }
+  
+  .dropdown-content li {
+    padding: 8px 16px;
+    transform: scale(0.95);
+    cursor: pointer;
+  }
+  
+  .dropdown-content li:hover {
+    transform: scale(1);
+  }
+
+/* Media queries for responsive layout */
+@media screen and (max-width: 991px) {
+    .container {
+        grid-template-columns: 25% 75%;
+    }
+    
+    .container-shrink {
+        grid-template-columns: 8% 92%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "teachers-navbar"
+            "contentFrame";
+    }
+    
+    .sidebar {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        width: 75%;
+        max-width: 300px;
+    }
+    
+    .sidebar.mobile-open {
+        left: 0;
+    }
+    
+    .container-shrink {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "contentFrame"
+            "contentFrame";
+    }
+    
+    .sidebar.shrink {
+        width: 60px;
+        min-width: 60px;
+    }
+    
+    .sidebar-item span {
+        display: inline-block; /* Ensure text is always visible in mobile menu */
+    }
+    
+    .sidebar.shrink .sidebar-item span {
+        display: none;
+    }
+    
+    iframe {
+        height: calc(100vh - 50px);
+        width: 100%;
+    }
+    
+    .hidden-text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .sidebar-logo-cover {
+        width: 100%;
+        flex-wrap: nowrap;
+        overflow: hidden;
+    }
+
+    /* Make hamburger menu visible on mobile */
+    .hamburger-menu {
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .teachers-navbar {
+        padding: 10px 15px;
+    }
+    
+    .teachers-navbar .teachers-navbar-right {
+        font-size: 16px;
+    }
+    
+    .nav-profile-logo {
+        margin-right: 1rem;
+    }
+    
+    .bell-icon {
+        margin-right: 1rem;
+    }
+    
+    .sidebar {
+        width: 85%;
+    }
+}

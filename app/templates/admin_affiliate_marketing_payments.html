@@ -1,0 +1,130 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowlegopedia</title>
+    <link rel="stylesheet" href="{% static 'css/admin_affiliate_marketing_payments.css' %}">
+</head>
+<body>
+
+
+    <div class="edit-btn-contianer">
+        {% comment %} <button class="edit-btns">Edit</button> {% endcomment %}
+        </div>
+
+
+        <div class="earning-enroll-container">
+            <div class="statics-box student-manager-profile">
+                <div class="statics-box-heading">
+                    <h2>{{ request.user.username }}</h2>
+                    <p>{{ request.user.phone_number }}</p>
+                    <p id="email">{{ request.user.email }}</p>
+                </div>
+                <img src="./static/admin_img/student_management_img/student_manager_profile.png" alt="">
+            </div>
+            <div class="statics-box  total-enroll-count">
+                <div class="statics-box-heading">
+                <h2>Total enrollment count</h2>
+                <p><span>{{ total_enrollment_count }} Users</p></div>
+                <img src="../static/admin_img/dashborad_img/total_enroll.png" alt="">
+            </div>
+            <div class="statics-box ongoing-course-count">
+                <div class="statics-box-heading">
+                    <h2>Total Earnings</h2>
+                    <p>{{ total_earnings }} Course</p>
+                </div>
+                <img src="./static/admin_img/student_management_img/ongoing_course_count.png" alt="">
+            </div>
+        </div>
+
+        <!-- Container that contains "statics boxes" ENDS-->
+
+
+<!-- Container that contains "tables" STARTS -->
+
+        <!-- Container that contains " PAYMENT table" -->
+        <div id="tables">
+
+            <div class="each-table-container">
+                <h2 class="sub-payment-heading">PENDING PAYMENT</h2>
+                <table id="table2">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Invoice No</th>
+                            <th>Name</th>
+                            <th>Month</th>
+                            <th>Course Name</th>
+                            <th>No.of enrollments</th>
+                            <th>Per share</th>
+                            <th>Amount</th>
+                            <th>Pay</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for payment_pending in payment_pendings %}
+                            <tr>
+                                <td>{{ forloop.counter  }}</td>
+                                <td>{{ payment_pending.invoice_id }}</td>
+                                <td>{{ payment_pending.student.full_name  }}</td>
+                                <td>{{ payment_pending.date_of_payment }}</td>
+                                <td>{{ payment_pending.course.course_name  }}</td>
+                                <td> 1 users</td>
+                                <td>$35 </td>
+                                <td><a href="">Pay</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        <div class="each-table-container">
+            <h2 class="sub-payment-heading">PAID PAYMENT</h2>
+            <table id="table1">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Invoice No</th>
+                        <th>Name</th>
+                        <th>Month</th>
+                        <th>Course Name</th>
+                        <th>No.of enrollments</th>
+                        <th>Per share</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th id="bill">Bill</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for payment_paids in payment_paid %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ payment_paids.invoice_id }}</td>
+                        <td>{{ payment_paids.student.full_name  }}</td>
+                        <td>{{ payment_paids.date_of_payment }}</td>
+                        <td>{{ payment_paids.course.course_name  }}</td>
+                        <td> 1 users</td>
+                        <td>$35 </td>
+                        <td>{{ payment_paids.amount_paid }}</td>
+                        <td>{{ payment_paids.status }}</td>
+                        <td>{{ payment_paids.amount_paid }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+<!-- Container that contains "tables" ENDS -->
+
+<script>
+
+    function goToPaymentPayPage() {
+        window.location.href = "{% url 'admin_affiliate_marketing_payments_pay' %}";
+    }
+
+</script>
+</body>
+</html>

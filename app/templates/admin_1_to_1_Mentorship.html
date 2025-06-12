@@ -1,0 +1,148 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowlegopedia</title>
+    <link rel="stylesheet" href="{% static 'css/admin_1_to_1_Mentorship.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <h1 id="main-payment-heading">1 : 1 MENTORSHIP</h1>
+
+    <div class="sort-search-container">
+        <div class="sort-continer">
+            <p>Sort By : </p>
+            <select id="sortSelect" onchange="sortTable()">
+                <option class="sort-option" value="default">Default</option>
+                <option class="sort-option" value="date">Date</option>
+            </select>
+            <i class="dropdown-icon fa fa-chevron-down"></i>
+        </div>
+        <div class="search">
+            <input class="input-box" placeholder="Search" type="text" id="search">
+        </div>
+    </div>
+
+    <div id="tables">
+        <div class="each-table-container">
+            <h2 class="sub-payment-heading">PENDING MENTORSHIP</h2>
+            <div class="table-wrapper">
+                <table id="paymentTable">
+                    <thead>
+                        <tr>
+                            <th>Date of Payment</th>
+                            <th>Name</th>
+                            <th>Email ID</th>
+                            <th>Phone No.</th>
+                            <th>Course Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pending_payment in pending_payments %}
+                            <tr>
+                                <td>{{ pending_payment.request_date }}</td>
+                                <td>{{ pending_payment.mentor.name }}</td>
+                                <td>{{ pending_payment.mentor.email }}</td>
+                                <td>{{ pending_payment.mentor.phone_number }}</td>
+                                <td>{{ pending_payment.course.course_name }}</td>
+
+                            </tr>
+
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="each-table-container">
+            <h2 class="sub-payment-heading">COMPLETED MENTORSHIP</h2>
+            <div class="table-wrapper">
+                <table id="table2">
+                    <thead>
+                        <tr>
+                            <th>Date of Payment</th>
+                            <th>Name</th>
+                            <th>Email ID</th>
+                            <th>Phone No.</th>
+                            <th>Course Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       {% for paid_payment in paid_payments %}
+                       <tr>
+                            <td>{{ paid_payment.request_date }}</td>
+                            <td>{{ paid_payment.mentor.name }}</td>
+                            <td>{{ paid_payment.mentor.email }}</td>
+                            <td>{{ paid_payment.mentor.phone_number }}</td>
+                            <td>{{ paid_payment.course.course_name }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple search functionality
+        document.getElementById('search').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const tables = document.querySelectorAll('table');
+
+            tables.forEach(table => {
+                const rows = table.querySelectorAll('tbody tr');
+
+                rows.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    row.style.display = text.includes(searchTerm) ? '' : 'none';
+                });
+            });
+        });
+
+        // Sort functionality
+        function sortTable() {
+            const sortBy = document.getElementById('sortSelect').value;
+            const tables = document.querySelectorAll('table');
+
+            if (sortBy === 'date') {
+                tables.forEach(table => {
+                    const rows = Array.from(table.querySelectorAll('tbody tr'));
+
+                    rows.sort((a, b) => {
+                        const dateA = a.cells[0].textContent;
+                        const dateB = b.cells[0].textContent;
+                        return dateA.localeCompare(dateB);
+                    });
+
+                    const tbody = table.querySelector('tbody');
+                    rows.forEach(row => tbody.appendChild(row));
+                });
+            } else {
+                // Reset to default order if needed
+                // This would require storing the original order
+            }
+        }
+    </script>
+    <script>
+document.getElementById("search").addEventListener("keyup", function () {
+    var input = document.getElementById("search");
+    var filter = input.value.toLowerCase();
+    var table = document.getElementById("paymentTable");
+    var tr = table.getElementsByTagName("tr");
+
+    for (var i = 1; i < tr.length; i++) { // skip header row
+        var td = tr[i].getElementsByTagName("td")[1]; // 2nd column = Mentor Name
+        if (td) {
+            var txtValue = td.textContent || td.innerText;
+            tr[i].style.display = txtValue.toLowerCase().includes(filter) ? "" : "none";
+        }
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,390 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referral Details</title>
+    <link rel="stylesheet" href="{% static 'css/admin_course_provider_database.css' %}">
+<style>
+     /* Modal background overlay */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+}
+
+/* Modal content box */
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal header */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Modal body */
+.modal-body {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Modal footer */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Close button (X) */
+.close {
+  color: #aaa;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #000;
+}
+
+/* Buttons */
+.modal .btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal .btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.modal .btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Modal overlay */
+.custom-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Modal content box */
+.custom-modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 25px 30px;
+    border-radius: 10px;
+    width: 400px;
+    max-width: 90%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Close button */
+.close-btn {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Confirm & cancel buttons */
+.confirm-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Container that contains "statics boxes" STARTS-->
+<h2 id="pending-payment-heading">COURSE PROVIDER DATABASE</h2>
+<!-- Container that contains "statics boxes" ENDS-->
+
+<div class="total-row-current-page-container">
+    <div class="current-page">
+        <img src="{% static 'admin_img/student_management_img/course_enroll_img/home_icon.png' %}" alt="" class="home-icon">
+        <img src="{% static 'admin_img/student_management_img/course_enroll_img/page_arrow.png' %}" alt="" class="page-arrow">
+        <p class="current-page-info" id="studentManagement">Course Name</p>
+        <img src="{% static 'admin_img/student_management_img/course_enroll_img/page_arrow.png' %}" alt="" class="page-arrow">
+        <p class="current-page-info">Quiz</p>
+        <img src="{% static 'admin_img/student_management_img/course_enroll_img/page_arrow.png' %}" alt="" class="page-arrow">
+        <p class="current-page-info">Quiz 1</p>
+        <img src="{% static 'admin_img/student_management_img/course_enroll_img/page_arrow.png' %}" alt="" class="page-arrow">
+    </div>
+
+    <div class="edit-buttons-container">
+        <button class="edit-btns" id="detailsBtn">Details</button>
+        <button class="edit-btns" id="editBtn">Edit</button>
+        <button class="edit-btns" id="createAccountBtn" onclick="createAccount()">Create Account</button>
+    </div>
+</div>
+
+<!-- Table Section STARTS -->
+<div class="table-container">
+    <h3>ACTIVE ACCOUNTS</h3>
+    <table id="activeAccountsTable">
+        <thead>
+            <tr>
+                <th id="name">Name</th>
+                <th id="email">Email ID</th>
+                <th id="phonenum">Phone Number</th>
+                <th id="date">Date of creation</th>
+                <th id="usersnum">Total Enrollment Count</th>
+                <th id="actionHead">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+               {% for provider_active in provider_active %}
+                <tr>
+                    <td>{{ provider_active.name }}</td>
+                    <td>{{ provider_active.email }}</td>
+                    <td>{{ provider_active.phone_number }}</td>
+                    <td>{{ provider_active.created_at }}</td>
+                    <td></td>
+                    <td class="action-links">
+                        {% comment %} <a href="{% url 'admin_affiliate-market-detail' marketer.id %}"
+                            class="detail-btn">Detail</a> {% endcomment %}
+                        <a href="{% url 'admin_course_provider_update' provider_active.id %}"
+                            class="edit-btn">Edit</a>
+                       <a href="#" class="suspend-btn" data-marketer-id="{{ provider_active.id }}" data-bs-toggle="modal" data-bs-target="#suspendModal">Suspend</a>
+                    </td>
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Pagination Controls STARTS -->
+<div class="pagination">
+    <div class="select-page">Select by Page No. :
+        <select id="pageSelect" onchange="changePage()"></select>
+    </div>
+    <div id="currentPage">Page 1 of 1</div>
+    <img id="prevBtn" class="next-previous-button" src="{% static 'admin_img/student_management_img/course_enroll_img/Arrow_left.png' %}" alt="Previous" onclick="prevPage()">
+    <img id="nextBtn" class="next-previous-button" src="{% static 'admin_img/student_management_img/course_enroll_img/Arrow_right.png' %}" alt="Next" onclick="nextPage()">
+</div>
+<!-- Pagination Controls ENDS -->
+
+<div id="suspendModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4>Suspend Marketer</h4>
+      <span class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+      Are you sure you want to suspend this marketer?
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="document.getElementById('suspendModal').style.display='none'">Cancel</button>
+      <a id="confirmSuspendBtn" class="btn btn-danger">Yes, Suspend</a>
+    </div>
+  </div>
+</div>
+
+<!-- Table 1 Section ENDS -->
+
+<!-- Table 2 Section STARTS -->
+<div class="table-container">
+    <h3>SUSPENDED ACCOUNTS</h3>
+    <table id="suspendedAccountsTable">
+        <thead>
+            <tr>
+                <th id="name">Name</th>
+                <th id="email">Email ID</th>
+                <th id="phonenum">Phone Number</th>
+                <th id="date">Date of creation</th>
+                <th id="usersnum">Total Enrollment Count</th>
+                <th id="actionHead">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+           {% for provider_suspends in provider_suspend %}
+                    <td>{{ provider_suspends.name }}</td>
+                    <td>{{ provider_suspends.email }}</td>
+                    <td>{{ provider_suspends.phone_number }}</td>
+                    <td>{{ provider_suspends.created_at }}</td>
+                    <td></td>
+                    <td class="action-links">
+                        <a href="#" class="active-btn" data-marketer-d="{{ provider_suspends.id }}">Active</a>
+                        <a href="#" class="delete-btn" data-marketer-id="{{ provider_suspends.id }}">Delete</a>
+                    </td>
+                </tr>
+               {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Pagination Controls STARTS -->
+<div class="pagination">
+    <div class="select-page">Select by Page No. :
+        <select id="pageSelect2" onchange="changePage2()"></select>
+    </div>
+    <div id="currentPage2">Page 1 of 1</div>
+    <img id="prevBtn" class="next-previous-button" src="{% static 'admin_img/student_management_img/course_enroll_img/Arrow_left.png' %}" alt="Previous" onclick="prevPage2()">
+    <img id="nextBtn" class="next-previous-button" src="{% static 'admin_img/student_management_img/course_enroll_img/Arrow_right.png' %}" alt="Next" onclick="nextPage2()">
+</div>
+<!-- Pagination Controls ENDS -->
+
+
+<!-- Table 2 Section ends -->
+
+<div class="suspendAccountBtn-container" >
+    <button class="edit-btns" id="suspendAccountBtn">Suspend Account</button>
+</div>
+
+<div id="activateModal" class="custom-modal">
+    <div class="custom-modal-content">
+        <span class="close-btn" onclick="closeActivateModal()">&times;</span>
+        <h2>Activate Account</h2>
+        <p>Are you sure you want to activate this marketer?</p>
+        <div>
+            <a id="confirmActivateBtn" class="confirm-btn">Yes, Activate</a>
+            <button class="cancel-btn" onclick="closeActivateModal()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- scripts -->
+
+<script>
+    function createAccount() {
+        window.location.href = "{% url 'admin_course_provider_create_account_form' %}";
+}
+</script>
+
+<script>
+    // -------------------------------
+    // Delete Modal Logic
+    // -------------------------------
+    const deleteModal = document.getElementById('deleteModal');
+    const deleteForm = document.getElementById('deleteForm');
+
+    document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            const marketerId = this.getAttribute('data-marketer-id');
+            deleteForm.action = `/admin_course_provider_delete/delete/${marketerId}/`;
+            deleteModal.style.display = 'block';
+        });
+    });
+
+    function closeDeleteModal() {
+        deleteModal.style.display = 'none';
+    }
+
+    // Close modal if user clicks outside the delete modal content
+    window.addEventListener('click', function (event) {
+        if (event.target === deleteModal) {
+            closeDeleteModal();
+        }
+    });
+
+    // -------------------------------
+    // Suspend Modal Logic
+    // -------------------------------
+    const suspendModal = document.getElementById('suspendModal');
+    const confirmSuspendBtn = document.getElementById('confirmSuspendBtn');
+    const suspendCloseBtn = suspendModal.querySelector('.close');
+
+    document.querySelectorAll('.suspend-btn').forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            const marketerId = this.getAttribute('data-marketer-id');
+            confirmSuspendBtn.href = `/admin_course_provider_suspend/suspend/${marketerId}/`;
+            suspendModal.style.display = 'block';
+        });
+    });
+
+    suspendCloseBtn.onclick = function () {
+        suspendModal.style.display = 'none';
+    };
+
+    // Close modal if user clicks outside the suspend modal content
+    window.addEventListener('click', function (event) {
+        if (event.target === suspendModal) {
+            suspendModal.style.display = 'none';
+        }
+    });
+</script>
+
+<script>
+    const activateModal = document.getElementById('activateModal');
+    const confirmActivateBtn = document.getElementById('confirmActivateBtn');
+
+    // Open modal and set marketer ID
+    document.querySelectorAll('.active-btn').forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            const marketerId = this.getAttribute('data-marketer-d');
+            confirmActivateBtn.href = `/admin_course_provider_active/active/${marketerId}/`;
+            activateModal.style.display = 'block';
+        });
+    });
+
+    function closeActivateModal() {
+        activateModal.style.display = 'none';
+    }
+
+    window.onclick = function (event) {
+        if (event.target === activateModal) {
+            closeActivateModal();
+        }
+    };
+</script>
+
+
+</body>
+</html>

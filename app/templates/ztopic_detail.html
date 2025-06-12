@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ topic.title }}</title>
+</head>
+<body>
+    <h1>{{ topic.title }}</h1>
+
+    {% if topic.get_video_url %}
+        <div style="max-width: 720px;">
+            {% if topic.video_file %}
+                <video width="100%" height="400" controls>
+                    <source src="{{ topic.get_video_url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            {% elif topic.video_link %}
+                <iframe width="100%" height="400"
+                        src="https://www.youtube.com/embed/{{ topic.video_link|cut:'https://www.youtube.com/watch?v=' }}"
+                        frameborder="0" allowfullscreen>
+                </iframe>
+            {% endif %}
+        </div>
+    {% else %}
+        <p>No video available for this topic.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create/Edit Affiliate Account</title>
+    <style>
+    /* Base Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f4f7fa;
+        color: #333;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    form {
+        background-color: #fff;
+        padding: 30px 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        width: 100%;
+        max-width: 500px;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #2c3e50;
+        font-size: 26px;
+    }
+
+    form p {
+        margin-bottom: 20px;
+    }
+
+    form label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="password"],
+    form select,
+    form textarea {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 15px;
+        background: #f9f9f9;
+        transition: border-color 0.3s ease;
+    }
+
+    form input:focus,
+    form select:focus,
+    form textarea:focus {
+        border-color: #3498db;
+        outline: none;
+        background-color: #fff;
+    }
+
+    button[type="submit"] {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #2980b9;
+    }
+
+    @media (max-width: 600px) {
+        form {
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 22px;
+        }
+    }
+</style>
+
+</head>
+<body>
+
+    <form method="post">
+        <h1>Edit Courser Provider Account</h1>
+        {% csrf_token %}
+        {{form.as_p}}
+        <!-- Display form fields here -->
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>

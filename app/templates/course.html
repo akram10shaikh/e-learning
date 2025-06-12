@@ -1,0 +1,2382 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPSKyED</title>
+    <link rel="icon" href="{% static 'assets/logo.png' %}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/course.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Righteous&family=Rokkitt:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+    <style>
+        body {
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: auto;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body p {
+  margin: 0
+}
+
+body h5 {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none !important;
+  color: #000 !important;
+}
+
+input:focus {
+  outline: none;
+}
+
+.navbar {
+  width: 100% !important;
+  padding: 15px !important;
+}
+
+.navbar .left-section {
+  position: relative
+}
+
+.navbar .left-section,
+.right-section {
+  display: flex;
+  align-items: center !important;
+  justify-content: center;
+}
+
+.left-section .logo {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #fff;
+  margin-right: 10px;
+}
+
+.left-section .company-name {
+  color: #0085FF !important;
+  margin: 0 30px 0 0 !important;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 1.4rem
+}
+
+.left-section .company-name:hover,
+.left-section .explore:hover,
+.left-section .categories:hover {
+  cursor: pointer;
+  color: #0085FF;
+
+}
+
+.searchBar {
+  position: relative;
+}
+
+.left-section .searchBar p {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  font-size: 0.85rem;
+  color: #0085FF;
+  padding: 3px;
+  border-radius: 2px;
+  background-color: #F2FFFB;
+  font-weight: 500;
+}
+
+.searchBar .fa-chevron-down {
+  font-size: 0.7rem;
+  margin-left: 5px;
+}
+
+.searchBar input {
+  background-color: #fff;
+  padding: 8px;
+  padding-left: 30px;
+  width: 250px;
+  font-weight: 300;
+  font-size: 0.9rem;
+}
+
+.searchBar .fa-search {
+  position: absolute;
+  left: 10px;
+  color: #98A2B3;
+}
+
+.left-section .categories {
+  margin-left: 20px;
+  font-weight: 500;
+  font-size: 0.9rem
+}
+
+
+.left-section .main-category {
+  top: 60px;
+  left: 420px;
+  position: absolute;
+  width: max-content
+}
+
+.left-section .main-category, .left-section .web-development-category,  .left-section .mobile-developement-category,  .left-section .programming-category,  .left-section .engineering-category,  .left-section .block-chain-category,  .left-section .iot-category,  .left-section .cloud-category,  .left-section .data-science-category,  .left-section .cybersecurity-category {
+  list-style: none;
+  background-color: #fff;
+  padding: 15px 15px;
+  border-top-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  box-shadow: 0 0 9.1px 0 rgba(0, 0, 0, 0.1);
+  position: absolute;
+  z-index: 2;
+}
+
+.left-section ul li {
+  padding-top: 20px;
+  font-size: 0.9rem;
+}
+
+.left-section li:hover {
+  cursor: pointer;
+}
+
+.left-section .category {
+  top: 70px;
+  right: 100px;
+  width: max-content
+}
+
+.left-section .main-category,
+.left-section .web-development-category,
+.left-section .mobile-developement-category,
+.left-section .programming-category,
+.left-section .engineering-category,
+.left-section .block-chain-category,
+.left-section .iot-category,
+.left-section .cloud-category,
+.left-section .data-science-category,
+.left-section .cybersecurity-category {
+  display: none;
+}
+
+.left-section .main-category.active {
+  display: block;
+}
+
+.left-section .category.active {
+  display: block;
+}
+
+
+.middle-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.middle-section p {
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.middle-section p.active {
+  color: #0085FF;
+}
+
+.middle-section p:hover {
+  cursor: pointer;
+  color: #0085FF;
+}
+
+.right-section .cart:hover {
+  cursor: pointer;
+  color: #0085FF;
+}
+
+.right-section .fa {
+  margin: 0 15px 0 0 !important;
+}
+
+.right-section .btn {
+  padding: 5px 10px;
+  background-color: #fff;
+  margin-right: 15px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 5px;
+}
+
+.right-section .signupButton {
+  color: #fff;
+  padding: 5px 10px;
+  background-color: #0085FF;
+  border: none;
+}
+
+.right-section .signupButton:hover {
+  background-color: #006DD2;
+  color: #fff;
+  cursor: pointer
+}
+
+.right-section .loginButton:hover {
+  background-color: #0085FF;
+  color: #fff;
+}
+
+@media screen and (min-width:1270px){
+  .right-section .btn{
+    font-size: 12px;
+  }
+}
+
+.authentication-modal {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(108, 108, 108, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  overflow: auto;
+}
+
+.authentication-modal.active {
+  display: flex;
+}
+
+.authentication-modal .auth {
+  position: relative;
+  background-color: #fff;
+  width: 450px;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  flex-direction: column;
+  display: none;
+  max-height: 90vh; /* Limit the form height */
+  overflow-y: auto; /* Scroll if content exceeds height */
+}
+/* Hide scrollbar on modern browsers */
+.authentication-modal .auth::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+.authentication-modal .auth {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.authentication-modal .auth.active {
+  display: flex;
+}
+
+.authentication-modal .auth .close {
+  border-radius: 50%;
+  padding: 4px;
+}
+
+.authentication-modal .auth .close:hover {
+  cursor: pointer;
+  background-color: #D9D9D9;
+}
+
+.authentication-modal .auth label {
+  text-align: left;
+  margin-bottom: 7px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  ;
+}
+
+.authentication-modal .auth input {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #FCFCFD;
+  border: 1.5px solid #6C6C6C
+}
+
+.authentication-modal .auth .close {
+  position: absolute;
+  right: 20px;
+}
+
+.authentication-modal .auth .join {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #0085FF;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: none;
+}
+
+.authentication-modal .auth .join:hover {
+  cursor: pointer;
+  background-color: #006DD2;
+}
+
+.authentication-modal .auth .break {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 5px 0;
+}
+
+
+
+
+
+@media (max-width: 768px) {
+  .authentication-modal .auth {
+    width: 90%; /* Adapt to screen width */
+    padding: 20px; /* Reduce padding */
+  }
+
+  .authentication-modal .auth input {
+    padding: 8px; /* Smaller input fields */
+  }
+
+  .authentication-modal .auth h3 {
+    font-size: 1.2rem; /* Adjust heading size */
+  }
+
+  .authentication-modal .auth p {
+    font-size: 0.85rem; /* Adjust paragraph font size */
+  }
+
+  .authentication-modal .auth .join {
+    padding: 8px; /* Smaller button padding */
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .authentication-modal .auth {
+    width: 100%; /* Full width for mobile */
+    padding: 15px;
+  }
+
+  .authentication-modal .auth input {
+    padding: 6px;
+  }
+
+  .authentication-modal .auth h3 {
+    font-size: 1rem;
+  }
+
+  .authentication-modal .auth p {
+    font-size: 0.8rem;
+  }
+
+  .authentication-modal .auth .join {
+    padding: 6px;
+    font-size: 0.8rem;
+  }
+}
+
+
+
+
+.form-group {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  max-width: 300px;
+  margin: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 8px;
+}
+
+input[type="password"], input[type="text"] {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.toggle-icon {
+  cursor: pointer;
+  padding: 0 8px;
+}
+.break hr {
+  width: 200px;
+}
+
+.authentication-modal .social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 12px 0 0;
+  border-radius: 4px;
+  background-color: #FCFCFD;
+  border: 1.5px solid #6C6C6C;
+  margin-bottom: 15px;
+}
+
+.authentication-modal .social-btn:hover {
+  cursor: pointer;
+  background-color: #E6E6E6;
+}
+
+.authentication-modal .social-btn img {
+  margin-bottom: 17px;
+  margin-right: 20px;
+}
+
+.authentication-modal a {
+  text-decoration: underline !important;
+  color: #0085FF !important
+}
+
+.authentication-modal a:hover {
+  cursor: pointer
+}
+
+.user-type-btn-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.header-section {
+  position: relative;
+}
+
+.header-section .bg1 {
+  position: absolute;
+  width: 400px;
+  top: -80px;
+  left: -10px;
+}
+
+.header-section .bg2 {
+  position: absolute;
+  width: 350px;
+  bottom: -20px;
+  right: 10px;
+  z-index: 0;
+}
+
+.header-section .upper-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.upper-section .left-container h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 5rem;
+}
+
+.left-container h1 span {
+  color: #0085FF
+}
+
+.left-container p {
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: #646464;
+  line-height: 1.7rem;
+}
+
+.left-container .button-container {
+  margin: 30px 0;
+}
+
+.left-container .button-container button {
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 10px 15px;
+  border-radius: 8px;
+}
+
+.left-container .button-container button:first-child {
+  color: #fff;
+  background-color: #0085FF;
+  border: none;
+}
+
+.left-container .button-container button:last-child {
+  color: #0085FF;
+  background-color: #EAFFF9;
+  border: none;
+  box-shadow: 0px 1px 2px 0px #1018280D;
+  margin-left: 15px;
+}
+
+.left-container .button-container button:hover {
+  box-shadow: 0px 0px 0px 4px #F4EBFF, 0px 1px 2px 0px #1018280D;
+}
+
+.upper-section .left-container .features {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+}
+
+.upper-section .left-container .feature {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 15px;
+  margin-bottom: 20px;
+  white-space: nowrap
+}
+
+.upper-section .left-container .feature img {
+  margin-right: 8px;
+}
+
+.header-section .lower-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header-section .lower-section p {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #101828;
+}
+
+.second-section {
+  padding: 40px 5px;
+}
+
+.second-section .heading {
+  font-family: "Inknut Antiqua", serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 20px;
+}
+
+.second-section h4 {
+  text-align: center;
+  font-weight: 700;
+  color: #0085ff;
+  font-size: 2rem;
+}
+
+.second-section .all {
+  text-align: center;
+  padding: 10px;
+  width: 90%;
+  border-bottom: 2.5px solid #000;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wrapper {
+  width: 85%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wrapper #left,
+.wrapper #right {
+  top: 50%;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  position: absolute;
+  transform: translateY(-50%);
+  transition: transform 0.1s linear;
+  border: none;
+  background-color: transparent;
+}
+
+.wrapper button:hover {
+  cursor: pointer
+}
+
+.wrapper button:first-child {
+  left: -82px;
+}
+
+.wrapper button:last-child {
+  right: -60px;
+}
+
+.wrapper .carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% / 5.5) - 2px);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 5px;
+  border-radius: 8px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel .card {
+  list-style: none;
+  flex-direction: column;
+  margin-right: 20px;
+  border: none !important;
+  padding: none;
+}
+
+.card-body {
+  padding: 10px 5px !important;
+}
+
+.carousel .card img {
+  border-radius: 15px;
+  height: 240px;
+}
+
+.carousel .card .inner-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+.card .inner-container p {
+  font-weight: 500;
+  font-size: 0.85rem
+}
+
+.card .inner-container button {
+  border-radius: 10px;
+  background-color: #000;
+  color: #fff;
+  font-size: 0.84rem;
+  font-weight: 400;
+  padding: 6px 18px;
+  border: none
+}
+
+.card .inner-container button:hover {
+  background-color: #fff;
+  color: #000;
+  font-weight: 500;
+  cursor: pointer
+}
+
+
+.wrapper2 {
+  width: 85%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wrapper2 #left,
+.wrapper2 #right {
+  top: 50%;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  position: absolute;
+  transform: translateY(-50%);
+  transition: transform 0.1s linear;
+  border: none;
+  background-color: transparent;
+}
+
+.wrapper2 .carousel2 {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% / 5.5) - 2px);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 5px;
+  border-radius: 8px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.carousel2::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel2 .card2 {
+  list-style: none;
+  flex-direction: column;
+  border-radius: 20px;
+  background-color: #0085FF !important;
+  margin-right: 20px;
+  padding-bottom: 10px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset, 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.card2:hover {
+  cursor: pointer
+}
+
+.card2 h5 {
+  text-align: center;
+  font-size: 1.1rem !important;
+  padding: 7px;
+  background-color: #EBE2E2;
+  color: #000 !important;
+  font-weight: 600 !important;
+}
+
+.card2 p {
+  font-size: 1rem !important;
+  margin: 0;
+}
+
+.card2 .rating-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.card-body2 {
+  padding: 10px 10px 20px 10px !important;
+  border-bottom: 1px solid #fff;
+}
+
+.card-body2 p {
+  color: #fff !important;
+}
+
+.rating-container .rating {
+  margin-right: 8px;
+  font-weight: 600;
+}
+
+.rating-container .rating-icons {
+  margin-right: 5px;
+  color: #FFB602;
+}
+
+
+.rating-container .views {
+  opacity: 0.5;
+}
+
+.carousel2 .card2 img {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.carousel2 .card2 h5 {
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: #003078;
+  margin-bottom: 5px;
+}
+
+.carousel2 .card2 p {
+  color: #002449;
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+.carousel2 .card2 .view-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card2 .view-more button {
+  border: none;
+  background-color: transparent;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+
+.view-more button:hover {
+  cursor: pointer;
+}
+
+.course-names-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 50px;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;
+}
+
+.course-names-container .course-name {
+  padding: 15px;
+  border: 1px solid #000;
+  background: rgba(98, 77, 77, 0.05);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin: 10px;
+}
+
+.course-names-container .course-name2 {
+  padding: 15px;
+  border: 1px solid #000;
+  background: rgba(98, 77, 77, 0.05);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin: 10px;
+  width: 200px;
+  height: 80px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.line {
+  background-color: #000;
+  height: 1px;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.trending-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 60px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.trending-container .link {
+  font-size: 0.95rem !important;
+  color: #0085FF !important;
+  cursor: pointer;
+  margin-bottom: 15px !important;
+}
+
+.trending-container h5 {
+  font-size: 1.2rem;
+}
+
+.trend-containers h6 {
+  margin-bottom: 3px;
+  font-weight: 600;
+}
+
+.trending-container .first-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.trending-container .trend-containers {
+  margin: 25px 15px;
+}
+
+.first-container .trend-btn {
+  border-radius: 50px;
+  background-color: #fff;
+  padding: 8px 15px;
+  margin-top: 30px;
+  font-weight: 600;
+  border: 1.5px solid #000;
+}
+
+.first-container .trend-btn:hover {
+  background-color: #000;
+  color: #fff !important;
+}
+
+.seventh-section {
+  padding: 25px;
+  margin: 20px 0 40px 0;
+  background-color: #0085FF;
+}
+
+.seventh-section .programmes-containers {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.programmes-containers .programme {
+  border: 2px solid #000;
+  text-align: center;
+  margin: 20px;
+  background-color: #fff;
+  padding: 0 0 10px 0;
+  transition: transform 0.3s ease-in-out;
+}
+
+.programmes-containers .programme:hover {
+  transform: scale(1.1);
+  /* Zoom in by 10% */
+}
+
+.programme .points {
+  text-align: left;
+  margin-left: 10%
+}
+
+.programme .inside-container {
+  margin: 30px auto 30px auto;
+  width: 65%;
+}
+
+.inside-container h4 {
+  font-weight: 700;
+}
+
+.landing-footer-section {
+  background-color: #101828;
+  padding-top: 40px;
+  padding-bottom: 15px;
+  padding-left: auto;
+  padding-right: auto;
+  text-align: center;
+}
+
+.landing-footer-list {
+  text-align: left;
+  color: #fff !important;
+}
+
+.landing-company-details {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.company-details .app {
+  margin-left: 10px;
+}
+
+
+.app p {
+  margin: 0;
+}
+
+.more-items {
+  margin: 15px;
+}
+
+.more-items ul {
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.landing-footer-section li {
+  margin-bottom: 5px;
+  color: #fff !important;
+}
+
+.landing-footer-section .landing-list-header {
+  color: #98A2B3 !important;
+  font-weight: 500;
+  text-decoration: none !important;
+}
+
+.landing-footer-section li:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+
+.socials i {
+  font-size: 1.5rem;
+  margin-right: 12px;
+  color: #98A2B3
+}
+
+.socials i:hover {
+  cursor: pointer;
+  color: #fff
+}
+
+.footer-below-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  color: #98A2B3;
+}
+
+@media screen and (max-width: 1680px) {
+  .wrapper .carousel {
+    grid-auto-columns: calc((100% / 4) - 2px);
+  }
+
+  .wrapper2 .carousel2 {
+    grid-auto-columns: calc((100% / 4) - 2px);
+  }
+}
+
+@media screen and (max-width: 1345px) {
+  .image-container .img1 {
+    top: -130px;
+    left: 210px;
+  }
+
+  .image-container .img2 {
+    top: 190px;
+    left: 50px
+  }
+}
+
+
+@media screen and (max-width: 1270px) {
+  .wrapper .carousel {
+    grid-auto-columns: calc((100% / 3.5) - 2px);
+  }
+
+  .wrapper2 .carousel2 {
+    grid-auto-columns: calc((100% / 3.5) - 2px);
+  }
+
+  .navbar .middle-section a:nth-child(3),
+  .navbar .middle-section a:nth-child(4),
+  .navbar .right-section .cart {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1224px) {
+  .header-section br {
+    display: none;
+  }
+
+  .upper-section .left-container h1 {
+    font-size: 3.5rem;
+    line-height: 4.8rem;
+  }
+
+}
+
+
+@media screen and (max-width: 1200px) {
+  .wrapper .carousel {
+    grid-auto-columns: calc((100% / 3) - 9px);
+  }
+
+  .trending-container {
+    justify-content: flex-start;
+    margin-left: 5%;
+  }
+}
+
+@media screen and (max-width: 1170px) {
+  .header-section .upper-section .right-container img {
+    width: 500px;
+  }
+}
+
+@media screen and (max-width: 1105px) {
+  .background-container .image-container {
+    display: none;
+  }
+
+  .background-container .content-container {
+    width: 100%;
+  }
+
+  .background-container {
+    height: 280px;
+  }
+
+  .course-names-container {
+    justify-content: center !important;
+  }
+}
+
+@media screen and (max-width: 1070px) {
+  .programmes-containers {
+    flex-wrap: wrap;
+  }
+
+  .wrapper .carousel {
+    grid-auto-columns: calc((90% / 2.5) - 10px);
+  }
+
+  .wrapper2 .carousel2 {
+    grid-auto-columns: calc((90% / 2.5) - 10px);
+  }
+
+  .wrapper button:first-child {
+    left: -65px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .upper-section .left-container h1 {
+    font-size: 3rem;
+    line-height: 4.4rem;
+  }
+
+  .header-section .upper-section .right-container img {
+    width: 450px;
+  }
+
+  .header-section .lower-section p {
+    font-size: 1.3rem
+  }
+
+  .header-section .lower-section img {
+    width: 100px
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .header-section .upper-section .right-container img {
+    width: 400px;
+  }
+
+  .wrapper .carousel {
+    grid-auto-columns: calc((90% / 2) - 10px);
+  }
+
+  .wrapper2 .carousel2 {
+    grid-auto-columns: calc((90% / 2) - 10px);
+  }
+}
+
+@media screen and (max-width: 865px) {
+
+  .header-section .upper-section .left-container {
+    text-align: center;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .header-section .upper-section .right-container {
+    display: none;
+  }
+
+  .upper-section .left-container .features {
+    justify-content: center;
+  }
+
+  .header-section .lower-section img {
+    width: 80px
+  }
+
+  .header-section .lower-section p {
+    font-size: 1rem
+  }
+
+  .wrapper .carousel {
+    grid-auto-columns: calc((80% / 1.6) - 10px);
+  }
+
+  .wrapper2 .carousel2 {
+    grid-auto-columns: calc((80% / 1.6) - 10px);
+  }
+
+  .wrapper .left,
+  .wrapper .right,
+  .wrapper2 .left .wrapper2 .right {
+    display: none
+  }
+
+  .landing-footer-section .company-details {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .company-details ul,
+  .company-details .description,
+  .company-details .app {
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .navbar .middle-section {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .wrapper .carousel {
+    grid-auto-columns: calc((100% / 1) - 9px);
+  }
+
+  .wrapper2 .carousel2 {
+    grid-auto-columns: calc((100% / 1.5) - 9px);
+  }
+
+  .landing-footer-section .footer-below-section {
+    flex-direction: column-reverse;
+
+  }
+
+  .landing-footer-section .footer-below-section .socials {
+    margin-bottom: 15px;
+  }
+}
+
+
+@media screen and (max-width: 550px) {
+
+  .header-section .lower-section {
+    display: none;
+  }
+}
+
+
+@media screen and (max-width: 520px) {
+
+  .course-info .rating-container {
+    flex-direction: column;
+  }
+
+  .wrapper2 .carousel2 {
+    grid-auto-columns: calc((100% / 1) - 9px);
+  }
+
+  .card-container .course-details {
+    display: none;
+  }
+
+  .navbar .company-name {
+    display: none;
+  }
+
+  .trending-container {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width:864px){
+  .landing-company-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* align-items: center; */
+    flex-wrap: wrap;
+  }
+  .landing-company-details ul{
+    width: 50%;
+  }
+}
+
+@media screen and (max-width:710px){
+  .landing-company-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    /* align-items: center; */
+    flex-wrap: wrap;
+  }
+
+  .landing-company-details .description,.landing-company-details .app{
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .landing-company-details ul{
+    width: 33%;
+  }
+  .landing-company-details > div:nth-of-type(3) {
+    margin-left: 30px;
+  }
+}
+        .course-progress p {
+            margin-right: 10px;
+            font-size: 0.8rem !important
+        }
+
+        .card .play-btn {
+            position: absolute;
+            top: 35%;
+            left: 40%;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.5);
+            font-size: 3rem;
+            cursor: pointer
+        }
+
+        .card .preview-text {
+            color: #fff;
+            font-weight: 600;
+            position: absolute;
+            bottom: 10px;
+            left: 30%;
+        }
+        .sec-card {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 400px; /* Adjust as per your requirement */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .sec-card div[style*="position:relative"] {
+            position: relative;
+            width: 100%; /* Ensure it occupies full width of the parent card */
+            overflow: hidden;
+        }
+
+        .sec-card video {
+            width: 100%; /* Responsive video scaling */
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: white;
+            opacity: 0.7;
+            cursor: pointer;
+        }
+
+        .preview-text {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .form-buttons{
+            display: flex;
+            justify-content: space-between;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="left-section">
+            <a href="{% url 'landing_page_before_login' %}">
+                <img class="logo" src="{% static 'assets/logo.png' %}" alt="">
+
+            </a>
+            <p class="company-name">UPSKyED</p>
+            <div class="searchBar">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input type="text" id="search" name="search" placeholder="Search">
+                <a class="categories explore">
+                    Explore
+                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                </a>
+            </div>
+            <ul class="main-category">
+                <li class="first-category">Web Development</li>
+                <li class="second-category">Mobile App Development</li>
+                <li class="third-category">Programming Languages</li>
+                <li class="fourth-category"> Software Engineering</li>
+                <li class="fifth-category">Block Chain & Crypto Currency</li>
+                <li class="sixth-category">Internet of things</li>
+                <li class="seventh-category">Cloud Computing</li>
+                <li class="eight-category">Data Science & Machine Learning</li>
+                <li class="ninth-category">Cybersecurity</li>
+            </ul>
+            <ul class="web-development-category category ">
+                <li>HTML / CSS</li>
+                <li>Javascript</li>
+                <li>Bootstrap</li>
+                <li>React Js</li>
+                <li>Angular</li>
+                <li>Node Js</li>
+                <li>Express Js</li>
+            </ul>
+            <ul class="mobile-developement-category category">
+                <li>Android Development with Java/ Kotlin
+                </li>
+                <li>iOS Development with Swift</li>
+                <li> React Native </li>
+            </ul>
+            <ul class="programming-category category">
+                <li>Python</li>
+                <li>Java</li>
+                <li>C++</li>
+                <li>C#</li>
+                <li>Ruby</li>
+                <li>PHP</li>
+                <li>Go</li>
+            </ul>
+            <ul class="engineering-category category">
+                <li>Software Development Lifecycle (SDLC)</li>
+                <li>Agile and Scrum</li>
+                <li> DevOps Principles</li>
+                <li>Software Testing and Quality Assurance</li>
+            </ul>
+            <ul class="block-chain-category category">
+                <li>Blockchain Fundamentals</li>
+                <li> Smart Contract Development</li>
+                <li>Cryptocurrency and Bitcoin Basic</li>
+            </ul>
+            <ul class="iot-category category">
+                <li>Introduction to loT
+                </li>
+                <li>IoT Platforms and Technologies
+                </li>
+                <li> IoT Security and Privacy</li>
+            </ul>
+            <ul class="cloud-category category">
+                <li> Introduction to Cloud Computing
+                </li>
+                <li>Amazon Web Services (AWS)
+                </li>
+                <li>Microsoft Azure</li>
+                <li>Google Cloud Platform (GCP)</li>
+                <li>DevOps Practices and Tools</li>
+            </ul>
+            <ul class="data-science-category category">
+                <li>Python for Data Science
+                </li>
+                <li>Data Analysis with Pandas
+                </li>
+                <li>NumPy and SciPy</li>
+                <li>Machine Learning Fundamentals</li>
+                <li>Deep Learning with TensorFlow or PyTorch</li>
+                <li>Natural Language Processing</li>
+            </ul>
+            <ul class="cybersecurity-category category">
+                <li> Introduction to Cybersecurity
+                </li>
+                <li>Ethical Hacking
+                </li>
+                <li>Network Security</li>
+                <li>Web Application Security</li>
+                <li> Cryptography</li>
+                <li> Incident Response and Forensics</li>
+            </ul>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="right-section">
+            <a href="{% url 'landing_page_before_login' %}" class="active">Home</a>
+
+            <a href="{% url 'my_learnings' %}">My Learnings</a>
+
+
+            <!-- <a href="{% url 'common_discussion_forum' %}">Discussion Forum</a> -->
+            <div class="profile-container">
+                {% if user.profile and user.profile.profile_picture %}
+                <div class="profile">
+                    <img src="{{ user.profile.profile_picture.url }}" alt="" width="40px">
+                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                </div>
+                {% else %}
+                <div class="profile">
+                    <img src="{% static 'assets/user.png' %}" alt="" width="40px">
+                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                </div>
+                {% endif %}
+                <ul>
+                    <a href="{% url 'profile_page' %}">
+                        <li>Profile</li>
+                    </a>
+                    <a href="{% url 'certificate' %}">
+                        <li>My Certificates</li>
+                    </a>
+                    <a href="{% url 'blog' %}">
+                        <li>Blog</li>
+                    </a>
+                    <a href="{% url 'payment_history' %}">
+                        <li>Payment History</li>
+                    </a>
+                    <a href="{% url 'referral' %}">
+                        <li>Referral</li>
+                    </a>
+                    <a href="{% url 'ticket' %}">
+                        <li>Support & Help</li>
+                    </a>
+                    <a href="{% url 'logout' %}">
+                        <li>Log out</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+    <div class="middle-section">
+        <a href="{% url 'landing_page_before_login' %}">
+            <p class="active">Home</p>
+        </a>
+        <a href="{% url 'tech_courses' %}">
+            <p>Courses</p>
+        </a>
+
+        <a href="{% url 'about_us' %}">
+            <p>About us</p>
+        </a>
+
+        <a href="{% url 'contact_us' %}">
+            <p>Contact us</p>
+        </a>
+        <a href="{% url 'faq' %}">
+            <p>FAQs</p>
+        </a>
+    </div>
+    <div class="right-section">
+        {% if user.is_authenticated %}
+        <a href="#"> <a href="{% url 'cart' %}"><i class="fa fa-shopping-cart cart" aria-hidden="true"></i></a>
+        </a>
+        {% endif %}
+        <button id="loginButton" class="btn loginButton">Sign in</button>
+        <button id="signupButton" class="btn signupButton">Create free account</button>
+    </div>
+</div>
+<div class="authentication-modal" id="auth-modal">
+    <div id="signup" class="auth signup">
+        <img class="close" src="{% static 'assets/landing_page/close.png' %}" width="25px" alt="Icon">
+        <h3 style="margin-bottom: 5px">Sign Up</h3>
+        <p style="margin-top: 0; font-size: 0.88rem;
+            font-weight: 400; margin-bottom: 40px">Sign Up to create account</p>
+            <form  method="post">
+                {% csrf_token %}
+                {{ studnetform.as_p }}
+
+        <button class="join" style="width: 100%">Join For Free</button>
+        </form>
+                <div class="break">
+            <hr>
+            <p style="font-size: 0.88rem; color: #98989A; font-weight: 300; padding: 6px">OR</p>
+            <hr>
+        </div>
+        <button class="social-btn">
+            <img src="{% static 'assets/landing_page/google.png' %}" alt="" width="20px">
+            <p>Continue with Google</p>
+        </button>
+        <button class="social-btn">
+            <img src="{% static 'assets/landing_page/facebook.png' %}" alt="" width="20px">
+            <p>Continue with Facebook</p>
+        </button>
+        <p style="font-size: 0.92rem">Already have an account with UPSKyED? <a href="#" class="login">Log
+                In</a></p>
+    </div>
+
+    <div id="login" class="auth login">
+
+        <img class="close" src="{% static 'assets/landing_page/close.png' %}" width="25px" alt="Icon">
+        <h3 style="margin-bottom: 45px">Welcome back</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+        <a href="#" style="text-align: left; font-size: 0.82rem;margin-bottom: 30px">Forgot password?</a>
+        <a href="{% url 'landing_page' %}"><button class="join" style="width: 100%">Login</button></a>
+        </form>
+        <div class="break">
+            <hr>
+            <p style="font-size: 0.88rem; color: #98989A; font-weight: 300; padding: 6px">OR</p>
+            <hr>
+        </div>
+        <button class="social-btn">
+            <img src="{% static 'assets/landing_page/google.png' %}" alt="" width="20px">
+            <p>Continue with Google</p>
+        </button>
+        <button class="social-btn">
+            <img src="{% static 'assets/landing_page/facebook.png' %}" alt="" width="20px">
+            <p>Continue with Facebook</p>
+        </button>
+        <p style="font-size: 0.92rem">New to UPSKyED? <a href="#" class="signup">Sign Up</a></p>
+    </div>
+</div>
+    {% endif %}
+
+
+
+    <div class="course-page-container">
+        <div class="first-container">
+             {% for course in courses %}
+            <div class="course-info-container">
+                <h2>{{ course.course_name }}</h2>
+                <p>{{ course.description }}</p>
+
+                <div class="rating-container">
+                    <p class="rating">4.0</p>
+                    <div class="rating-icons">
+                        <img src="{% static 'assets/landing_page/favourite2.png' %}" alt="" width="17px">
+                        <img src="{% static 'assets/landing_page/favourite2.png' %}" alt="" width="17px">
+                        <img src="{% static 'assets/landing_page/favourite2.png' %}" alt="" width="17px">
+                        <img src="{% static 'assets/landing_page/favourite2.png' %}" alt="" width="17px">
+                        <img src="{% static 'assets/landing_page/star2.png' %}" alt="" width="17pxpx">
+                    </div>
+                    <p class="views">(views)</p>
+                </div>
+                <p style="font-size: 0.9rem">Created by which academy</p>
+                <div class="small-details">
+                    <div class="updated-date">
+                        <i class="fa-solid fa-circle-exclamation" ></i>
+                        <p>Last updated on 03/05/2024</p>
+                    </div>
+                    <div class="language">
+                        <img src="{% static 'assets/course/globe.png' %}" alt="Link icon" width="20px">
+                        <p>English</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border">
+                <h5>What you'll learn</h5>
+                <ul>
+                    <li>
+                        {{ course.what_you_will_learn }}
+                    </li>
+                </ul>
+            </div>
+            <h5>This course includes:</h5>
+            <ul style="margin-left: 5%">
+                <li>{{ course.this_course_includes }}</li>
+            </ul>
+
+
+
+
+            <h5 style="margin-top: 30px;">Course content</h5>
+            <p>6 sections • 72 lectures • 7h 49m total length</p>
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                {% for week in course.weeks.all %}
+                <div class="accordion-item">
+                    <div class="accordion-header" id="flush-headingOne">
+                        <img src="{% static 'assets/course/down-arrow.png' %}" class="arrow-icon"
+                            style="margin-left: 10px" width="25px" alt="Up Arrow Icon">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            <span>Module {{forloop.counter}}</span>
+                            <p style="opacity: 0.5;">1 lecture: 30min</p>
+                        </button>
+                    </div>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                        data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <h6 style="font-size: 1.2rem; font-weight: 300; opacity: 0.5">Module {{forloop.counter}} : 1 lecture: 30 min
+                            </h6>
+                            <h7>{{ week.topics.all|length }} Topics -- Duration 00:00 -- {{ quizzes.all|length }} No. of tests</h7>
+                            <p style="font-size: 0.9rem;margin-bottom: 10px">Welcome to the week {{ week.number }} module , here u can
+                                know about the
+                                domain in depth manner about the
+                                course Welcome to the week {{ week.number }} module , here u can know about the domain in depth manner
+                                about the course.</p>
+                            <p style="font-size: 1.1rem">Week {{ week.number }}</p>
+                            <div class="course-progress flex" style="margin-top: 10px">
+                                <div class="video-left flex">
+                                    <i class="fa fa-play-circle-o" aria-hidden="true"></i>
+                                    <p>3hr 3min of video left</p>
+                                </div>
+                                <div class="reading flex">
+                                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                    <p>10 min of readings left</p>
+                                </div>
+                                <div class="grade flex">
+                                    <img src="{% static 'assets/course/globe.png' %}" width="15px" alt="Link icon">
+                                    <p>{{ quizzes.all|length }} Graded assesment left</p>
+                                </div>
+                            </div>
+
+                            <a href="{% url 'module' %}">
+
+                                <p
+                                    style="margin-top: 15px; font-size: 0.9rem; font-weight: 500;position: relative; left: -13px;">
+                                    <span style="margin-bottom: 5px;">
+                                        <img src="{% static 'assets/course/up-arrow.png' %}" alt="Icon" width="18px"
+                                            style="transform: rotate(90deg);">
+                                    </span>Show more info about module
+                                </p>
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+
+            </div>
+            <button class="show-more-btn">Show more sections</button>
+            <h5>Requirements:</h5>
+            <ul style="margin-left: 5%">
+                <li>{{ course.requirement }}</li>
+            </ul>
+            <h5>Description:</h5>
+            <ul style="margin-left: 5%">
+                <li>Description of the course is written here</li>
+            </ul>
+            <h5 style="margin-top: 20px">Instructions:</h5>
+            <ul style="margin-left: 5%">
+                <li>{{ course.instructor }}</li>
+            </ul>
+            <h5 style="margin-top: 25px">Ratings</h5>
+            <div class="course-reviews-container">
+                <div class="review">
+                    <div class="user flex">
+                        <i class="fa fa-user-circle" aria-hidden="true" style="font-size: 1.5rem"></i>
+                        <p class="username" style="font-weight: 600">Name</p>
+                    </div>
+                    <div class="rating-container" style="margin-left: 20px">
+                        <p class="rating">4.0</p>
+                        <div class="rating-icons">
+                            <img src="{% static 'assets/landing_page/favourite2.png' %}" alt="" width="17px">
+                            <img src="{% static 'assets/landing_page/favourite2.png' %}" alt="" width="17px">
+                            <img src="{% static 'assets/landing_page/favourite2.png' %}" alt="" width="17px">
+                            <img src="{% static 'assets/landing_page/favourite2.png' %}" alt="" width="17px">
+                            <img src="{% static 'assets/landing_page/star2.png' %}" alt="" width="17pxpx">
+                        </div>
+                    </div>
+                    <p>comment will place over here</p>
+                    <div class="flex" style="justify-content: space-between;margin-top: 10px">
+                        <div class="like-btn flex">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true" onclick="toggleLike(this)"></i>
+                            <i class="fa fa-thumbs-up" aria-hidden="true" style="display: none;"></i>
+                            <p>Like</p>
+                        </div>
+                        <div class="dislike-btn flex">
+                            <i class="fa fa-thumbs-o-down" aria-hidden="true" onclick="toggleDislike(this)"></i>
+                            <i class="fa fa-thumbs-down" aria-hidden="true" style="display: none;"></i>
+                            <p>Dislike</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="review">
+                    <div class="user flex">
+                        <i class="fa fa-user-circle" aria-hidden="true" style="font-size: 1.5rem"></i>
+                        <p class="username" style="font-weight: 600">Name</p>
+                    </div>
+                    <div class="rating-container" style="margin-left: 20px">
+                        <p class="rating">4.0</p>
+                        <div class="rating-icons">
+                            <img src="{% static 'assets/landing_page/favourite2.png' %}" alt="" width="17px">
+                            <img src="{% static 'assets/landing_page/favourite2.png' %}" alt="" width="17px">
+                            <img src="{% static 'assets/landing_page/favourite2.png' %}" alt="" width="17px">
+                            <img src="{% static 'assets/landing_page/favourite2.png' %}" alt="" width="17px">
+                            <img src="{% static 'assets/landing_page/star2.png' %}" alt="" width="17pxpx">
+                        </div>
+                    </div>
+                    <p>comment will place over here</p>
+                    <div class="flex" style="justify-content: space-between;margin-top: 10px">
+                        <div class="like-btn flex">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true" onclick="toggleLike(this)"></i>
+                            <i class="fa fa-thumbs-up" aria-hidden="true" style="display: none;"></i>
+                            <p>Like</p>
+                        </div>
+                        <div class="dislike-btn flex">
+                            <i class="fa fa-thumbs-o-down" aria-hidden="true" onclick="toggleDislike(this)"></i>
+                            <i class="fa fa-thumbs-down" aria-hidden="true" style="display: none;"></i>
+                            <p>Dislike</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="review">
+                    <div class="user flex">
+                        <i class="fa fa-user-circle" aria-hidden="true" style="font-size: 1.5rem"></i>
+                        <p class="username" style="font-weight: 600">Name</p>
+                    </div>
+                    <div class="rating-container" style="margin-left: 20px">
+                        <p class="rating">4.0</p>
+                        <div class="rating-icons">
+                            <img src="{% static 'assets/landing_page/favourite2.png' %}" alt="" width="17px">
+                            <img src="{% static 'assets/landing_page/favourite2.png' %}" alt="" width="17px">
+                            <img src="{% static 'assets/landing_page/favourite2.png' %}" alt="" width="17px">
+                            <img src="{% static 'assets/landing_page/favourite2.png' %}" alt="" width="17px">
+                            <img src="{% static 'assets/landing_page/star2.png' %}" alt="" width="17pxpx">
+                        </div>
+                    </div>
+                    <p>comment will place over here</p>
+                    <div class="flex" style="justify-content: space-between;margin-top: 10px;">
+                        <div class="like-btn flex">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true" onclick="toggleLike(this)"></i>
+                            <i class="fa fa-thumbs-up" aria-hidden="true" style="display: none;"></i>
+                            <p>Like</p>
+                        </div>
+                        <div class="dislike-btn flex">
+                            <i class="fa fa-thumbs-o-down" aria-hidden="true" onclick="toggleDislike(this)"></i>
+                            <i class="fa fa-thumbs-down" aria-hidden="true" style="display: none;"></i>
+                            <p>Dislike</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="review">
+                    <div class="user flex">
+                        <i class="fa fa-user-circle" aria-hidden="true" style="font-size: 1.5rem"></i>
+                        <p class="username" style="font-weight: 600">Name</p>
+                    </div>
+                    <div class="rating-container" style="margin-left: 20px">
+                        <p class="rating">4.0</p>
+                        <div class="rating-icons">
+                            <img src="{% static 'assets/landing_page/favourite2.png' %}" alt="" width="17px">
+                            <img src="{% static 'assets/landing_page/favourite2.png' %}" alt="" width="17px">
+                            <img src="{% static 'assets/landing_page/favourite2.png' %}" alt="" width="17px">
+                            <img src="{% static 'assets/landing_page/favourite2.png' %}" alt="" width="17px">
+                            <img src="{% static 'assets/landing_page/star2.png' %}" alt="" width="17pxpx">
+                        </div>
+                    </div>
+                    <p>comment will place over here</p>
+                    <div class="flex" style="justify-content: space-between;margin-top: 10px">
+                        <div class="like-btn flex">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true" onclick="toggleLike(this)"></i>
+                            <i class="fa fa-thumbs-up" aria-hidden="true" style="display: none;"></i>
+                            <p>Like</p>
+                        </div>
+                        <div class="dislike-btn flex">
+                            <i class="fa fa-thumbs-o-down" aria-hidden="true" onclick="toggleDislike(this)"></i>
+                            <i class="fa fa-thumbs-down" aria-hidden="true" style="display: none;"></i>
+                            <p>Dislike</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="second-container">
+            {% for course in courses %}
+                {% if course.video %}
+            <div class="sec-card">
+                <div style="position:relative">
+                    <i class="fa fa-play-circle-o play-btn" aria-hidden="true"></i>
+                    <p class="preview-text">Course Preview Video</p>
+                    <video controls>
+                        <source src="{{ course.video.url }}" type="{{ course.video.content_type }}">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="card-body">
+                    <h4 style="font-weight: 700; font-size: 1.5rem;padding-left: 15px;">₹{{ course.price }}</h4>
+                    <p style="font-size: 0.9rem;;padding-left: 15px;">Original Price ₹3099</p>
+                    <p style="font-size: 0.9rem;;padding-left: 15px;">Discount 86% off</p>
+                    <p style="font-size: 0.95rem; opacity: 0.5; margin-top: 15px;padding-left: 15px;">1 day left for this offer!</p>
+                    {% if user.is_authenticated %}
+                    <form method="post" action="{% url 'add_to_cart' course.id %}">
+                    <div class="form-buttons">
+                        {% csrf_token %}
+                        <button class="cart-btn" style="border-radius: 15px !important; margin: 10px;">
+                            Add to Cart</button>
+                        </form>
+                        <form method="post" action="{% url 'add_to_wishlist' course.id %}">
+                        {% csrf_token %}
+                        <div class="like" style="margin-right: 10px;">
+                            <button style="border: none;background-color:transparent;">
+                            <i class="fa fa-heart inactive" aria-hidden="true" style="color: #EF0909"></i>
+                            <i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                        </div>
+                    </form>
+                    </div>
+                    {% else %}
+                    <div class="form-buttons">
+
+                        <a href="{% url 'landing_page_before_login' %}"><button class="cart-btn" style="border-radius: 15px !important; margin: 10px;">Add to Cart</button></a>
+
+                        <div class="like" style="margin-right: 10px;">
+                            <a href="{% url 'landing_page_before_login' %}">
+                            <button style="border: none;background-color:transparent;">
+                            <i class="fa fa-heart inactive" aria-hidden="true" style="color: #EF0909"></i>
+                            <i class="fa fa-heart-o" aria-hidden="true"></i></button></a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <footer class="footer-section">
+        <div class="company-details">
+            <div class="description">
+                <h3 style="font-weight: 600;color: #0085FF">E-Learning</h3>
+            </div>
+            <div class="app">
+                <p style="font-size: 1rem; color: #fff;">Top learning experiences that <br>create more
+                    talent in the world.</p>
+
+
+            </div>
+            <div>
+                <ul>
+                    <li class="list-header">Company</li>
+                    <a href="{% url 'about_us' %}">
+                        <li>About us</li>
+                    </a>
+                    <a href="{% url 'faq' %}">
+                        <li>FAQs</li>
+                    </a>
+                    <a href="{% url 'blog' %}">
+                        <li>Blog</li>
+                    </a>
+                    <a href="{% url 'ticket' %}">
+                        <li>Support</li>
+                    </a>
+
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li class="list-header">Social</li>
+                    <li>Twitter</li>
+                    <li>LinkedIn</li>
+                    <li>GitHub</li>
+                    <li>Dribble</li>
+
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li class="list-header">Legal</li>
+                    <li>Terms</li>
+                    <li>Privacy</li>
+                    <a href="{% url 'contact_us' %}">
+                        <li>Contact Us</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-below-section">
+            <p>© 2024 E-Learning. All rights reserved.</p>
+            <div class="socials">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+                <i class="fa fa-github" aria-hidden="true"></i>
+                <i class="fa fa-whatsapp" aria-hidden="true"></i>
+            </div>
+        </div>
+    </footer>
+    <script type="text/Javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+                // Combined initialization function
+                function initializeNavigation() {
+                    // Categories functionality
+                    const categories = document.querySelector('.left-section .categories');
+                    const categoryList = document.querySelector('.main-category');
+                    const mainCategories = document.querySelectorAll('.main-category li');
+                    const categoryLists = document.querySelectorAll('.category');
+
+                    if (categories) {
+                    categories.addEventListener('click', function () {
+                    categories.addEventListener('click', function () {
+                        // Toggle the 'active' class on the main category list
+                                categories.addEventListener('click', function () {
+                        // Toggle the 'active' class on the main category list
+                                    categoryList.classList.toggle('active');
+                                    categoryLists.forEach(function (category) {
+                                        category.classList.remove('active');
+                                    });
+                                });
+                    }
+
+                    if (mainCategories.length > 0) {
+                        mainCategories.forEach(function (mainCategory, index) {
+                            mainCategory.addEventListener('click', function () {
+                                categoryLists.forEach(function (category) {
+                                    category.classList.remove('active');
+                                });
+                                categoryLists[index].classList.add('active');
+                            });
+                        });
+                    }
+
+                    // Profile functionality
+                    const profile = document.querySelector('.profile');
+                    const listItems = document.querySelectorAll('.profile-container ul li');
+                    const ul = document.querySelector('.profile-container ul');
+                    const chevron = document.querySelector('.fa-chevron-down');
+
+                    if (profile && ul && chevron) {
+                        profile.addEventListener('click', function () {
+                            ul.classList.toggle('active');
+                            chevron.classList.toggle('rotate');
+                        });
+                    }
+
+                    if (listItems.length > 0) {
+                        listItems.forEach(function (item) {
+                            item.addEventListener('click', function () {
+                                listItems.forEach(function (li) {
+                                    li.classList.remove('active');
+                                });
+                                this.classList.add('active');
+                            });
+                        });
+                    }
+                }
+
+        // Initialize everything
+        initializeNavigation();
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Select all like buttons
+            const likeButtons = document.querySelectorAll(".like");
+
+            // Loop through each like button
+            likeButtons.forEach(function (likeButton) {
+                // Select active and inactive heart icons within the current like button
+                const activeHeart = likeButton.querySelector(".fa-heart");
+                const inactiveHeart = likeButton.querySelector(".fa-heart-o");
+
+                // Add click event listener to the current like button
+                likeButton.addEventListener("click", function () {
+                    // Toggle the "inactive" class for both heart icons within the current like button
+                    activeHeart.classList.toggle("inactive");
+                    inactiveHeart.classList.toggle("inactive");
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const accordionButtons = document.querySelectorAll('.accordion-button');
+            const arrowIcons = document.querySelectorAll('.arrow-icon');
+
+            accordionButtons.forEach(function (button, index) {
+                button.addEventListener('click', function () {
+                    arrowIcons[index].classList.toggle('rotate-icon');
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            const showMoreBtn = document.querySelector('.show-more-btn');
+
+            // Hide last 3 accordion items initially
+            for (let i = 5; i < accordionItems.length; i++) {
+                accordionItems[i].style.display = 'none';
+            }
+
+            // Toggle visibility of last 3 accordions on button click
+            showMoreBtn.addEventListener('click', function () {
+                for (let i = 5; i < accordionItems.length; i++) {
+                    if (accordionItems[i].style.display === 'none') {
+                        accordionItems[i].style.display = 'block';
+                    } else {
+                        accordionItems[i].style.display = 'none';
+                    }
+                }
+
+                // Toggle button text
+                if (showMoreBtn.textContent === 'Show more sections') {
+                    showMoreBtn.textContent = 'Show less sections';
+                } else {
+                    showMoreBtn.textContent = 'Show more sections';
+                }
+            });
+        });
+
+        function toggleLike(element) {
+            const likeIcon = element.parentElement.querySelector('.fa.fa-thumbs-up');
+            const outlineLikeIcon = element.parentElement.querySelector('.fa.fa-thumbs-o-up');
+
+            likeIcon.style.display = likeIcon.style.display === 'none' ? 'inline-block' : 'none';
+            outlineLikeIcon.style.display = outlineLikeIcon.style.display === 'none' ? 'inline-block' : 'none';
+
+            // If like button is clicked, reset dislike button to 'thumbs-o-down'
+            const dislikeIcon = element.parentElement.nextElementSibling.querySelector('.fa.fa-thumbs-down');
+            const outlineDislikeIcon = element.parentElement.nextElementSibling.querySelector('.fa.fa-thumbs-o-down');
+            dislikeIcon.style.display = 'none';
+            outlineDislikeIcon.style.display = 'inline-block';
+        }
+
+        function toggleDislike(element) {
+            const dislikeIcon = element.parentElement.querySelector('.fa.fa-thumbs-down');
+            const outlineDislikeIcon = element.parentElement.querySelector('.fa.fa-thumbs-o-down');
+
+            dislikeIcon.style.display = dislikeIcon.style.display === 'none' ? 'inline-block' : 'none';
+            outlineDislikeIcon.style.display = outlineDislikeIcon.style.display === 'none' ? 'inline-block' : 'none';
+
+            // If dislike button is clicked, reset like button to 'thumbs-o-up'
+            const likeIcon = element.parentElement.previousElementSibling.querySelector('.fa.fa-thumbs-up');
+            const outlineLikeIcon = element.parentElement.previousElementSibling.querySelector('.fa.fa-thumbs-o-up');
+            likeIcon.style.display = 'none';
+            outlineLikeIcon.style.display = 'inline-block';
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the modal container
+            var modal = document.getElementById("modal-container");
+
+            // Get all buttons with the ID open-modal-btn
+            var buttons = document.querySelectorAll('#open-modal-btn');
+
+            // Attach click event listeners to all buttons
+            buttons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    // Open the modal by setting its display style to block
+                    modal.style.display = "flex";
+                });
+            });
+
+            // Get the close button inside the modal
+            var closeButton = document.querySelector('.modal-container .close');
+
+            // Attach click event listener to the close button
+            closeButton.addEventListener('click', function () {
+                // Close the modal by setting its display style to none
+                modal.style.display = "none";
+            });
+
+            // Attach click event listener to close modal when clicking outside of it
+            window.addEventListener('click', function (event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+        });
+
+
+
+
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+        {% if user.is_authenticated %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const categories = document.querySelector('.left-section .categories');
+                const categoryList = document.querySelector('.main-category');
+                const mainCategories = document.querySelectorAll('.main-category li');
+                const categoryLists = document.querySelectorAll('.category');
+
+                categories.addEventListener('click', function () {
+                    // Toggle the 'active' class on the main category list
+                    categoryList.classList.toggle('active');
+                    categoryLists.forEach(function (category) {
+                        category.classList.remove('active');
+                    });
+                });
+
+                mainCategories.forEach(function (mainCategory, index) {
+                    mainCategory.addEventListener('click', function () {
+                        // Remove the 'active' class from all category lists
+                        categoryLists.forEach(function (category) {
+                            category.classList.remove('active');
+                        });
+
+                        // Add the 'active' class to the clicked category list
+                        categoryLists[index].classList.add('active');
+                    });
+                });
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                const profile = document.querySelector('.profile');
+                const listItems = document.querySelectorAll('.profile-container ul li');
+                const ul = document.querySelector('.profile-container ul');
+                const chevron = document.querySelector('.fa-chevron-down');
+
+                // Toggle 'active' class on ul when profile is clicked
+                profile.addEventListener('click', function () {
+                    ul.classList.toggle('active');
+                    chevron.classList.toggle('rotate');
+                });
+
+                // Add 'active' class to clicked li and remove from others
+                listItems.forEach(function (item) {
+                    item.addEventListener('click', function () {
+                        // Remove active class from all list items
+                        listItems.forEach(function (li) {
+                            li.classList.remove('active');
+                        });
+
+                        // Add active class to the clicked item
+                        this.classList.add('active');
+                    });
+                });
+            });
+
+
+            document.addEventListener("DOMContentLoaded", function () {
+                // Select all sliders on the page
+                const sliders = document.querySelectorAll(".wrapper");
+
+                sliders.forEach(function (slider) {
+                    const carousel = slider.querySelector(".carousel");
+                    const firstCardWidth = carousel.querySelector(".card").offsetWidth;
+                    const leftButton = slider.querySelector(".left");
+                    const rightButton = slider.querySelector(".right");
+
+                    leftButton.addEventListener("click", () => {
+                        carousel.scrollLeft -= firstCardWidth;
+                    });
+
+                    rightButton.addEventListener("click", () => {
+                        carousel.scrollLeft += firstCardWidth;
+                    });
+                });
+            });
+
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+            crossorigin="anonymous"></script>
+        {% else %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const categories = document.querySelector('.left-section .categories');
+                const categoryList = document.querySelector('.main-category');
+                const mainCategories = document.querySelectorAll('.main-category li');
+                const categoryLists = document.querySelectorAll('.category');
+
+                categories.addEventListener('click', function () {
+                    // Toggle the 'active' class on the main category list
+                    categoryList.classList.toggle('active');
+                    categoryLists.forEach(function (category) {
+                        category.classList.remove('active');
+                    });
+                });
+
+                mainCategories.forEach(function (mainCategory, index) {
+                    mainCategory.addEventListener('click', function () {
+                        // Remove the 'active' class from all category lists
+                        categoryLists.forEach(function (category) {
+                            category.classList.remove('active');
+                        });
+
+                        // Add the 'active' class to the clicked category list
+                        categoryLists[index].classList.add('active');
+                    });
+                });
+            });
+
+
+
+            document.addEventListener("DOMContentLoaded", function () {
+                const loginButton = document.getElementById("loginButton");
+                const signupButton = document.getElementById("signupButton");
+                const loginModal = document.getElementById("login");
+                const signupModal = document.getElementById("signup");
+                const modalContainer = document.getElementById("auth-modal");
+
+                function openModal(modal) {
+                    modalContainer.classList.add("active");
+                    modal.classList.add("active");
+                }
+
+                function closeModal() {
+                    modalContainer.classList.remove("active");
+                    loginModal.classList.remove("active");
+                    signupModal.classList.remove("active");
+                }
+
+                loginButton.addEventListener("click", function () {
+                    closeModal(); // Close any open modals first
+                    openModal(loginModal);
+                });
+
+                signupButton.addEventListener("click", function () {
+                    closeModal(); // Close any open modals first
+                    openModal(signupModal);
+                });
+
+                modalContainer.addEventListener("click", function (event) {
+                    if (event.target === modalContainer) {
+                        closeModal();
+                    }
+                });
+
+                const closeModalButtons = document.querySelectorAll(".close");
+                closeModalButtons.forEach(button => {
+                    button.addEventListener("click", closeModal);
+                });
+            });
+
+
+            document.addEventListener("DOMContentLoaded", function () {
+                // Select all sliders on the page
+                const sliders = document.querySelectorAll(".wrapper");
+
+                sliders.forEach(function (slider) {
+                    const carousel = slider.querySelector(".carousel");
+                    const firstCardWidth = carousel.querySelector(".card").offsetWidth;
+                    const leftButton = slider.querySelector(".left");
+                    const rightButton = slider.querySelector(".right");
+
+                    leftButton.addEventListener("click", () => {
+                        carousel.scrollLeft -= firstCardWidth;
+                    });
+
+                    rightButton.addEventListener("click", () => {
+                        carousel.scrollLeft += firstCardWidth;
+                    });
+                });
+            });
+
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+            crossorigin="anonymous"></script>
+        {% endif %}
+
+</body>
+
+</html>

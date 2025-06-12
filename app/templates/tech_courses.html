@@ -1,0 +1,894 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPSKyED</title>
+    <link rel="icon" href="{% static 'assets/logo.png' %}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tech_courses.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Righteous&family=Rokkitt:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+        <link rel="icon" href="{% static 'assets/logo.png' %}" type="image/x-icon">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/landing_page_before_login.css' %}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Righteous&family=Rokkitt:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+        <script>
+            let showPasswordd = false;
+
+        function togglePasswordVisibilityC() {
+            showPasswordd = !showPasswordd;
+
+            const passwordInput = document.getElementById('passwordS');
+            const toggleIcon = document.getElementById('toggleIconS');
+
+            // Update input type and icon
+            passwordInput.type = showPasswordd ? 'text' : 'password';
+            toggleIcon.className = showPasswordd ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+        }
+
+        let showPasswordIn = false;
+
+        function togglePasswordVisibilityIn() {
+            showPasswordIn = !showPasswordIn;
+
+            const passwordInput = document.getElementById('passIn');
+            const toggleIcon = document.getElementById('toggleIconIn');
+
+            // Update input type and icon
+            passwordInput.type = showPasswordIn ? 'text' : 'password';
+            toggleIcon.className = showPasswordIn ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+        }
+        </script>
+        <style>
+            .tech-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 30px 15px;
+  box-sizing: border-box;
+}
+
+.tech-card2 {
+  background-color: #0085FF;
+  border-radius: 20px;
+  width: calc(33.33% - 40px);
+  min-width: 280px;
+  max-width: 340px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tech-card2 img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.card-body2 {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #fff;
+}
+
+.card-body2 p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rating {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.rating-icons {
+  display: flex;
+  gap: 5px;
+}
+
+.rating-icons img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.view-more {
+  text-align: center;
+  padding: 10px 0 20px;
+}
+
+.view-more button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+/* RESPONSIVE STYLES */
+@media (max-width: 1024px) {
+  .tech-card2 {
+    width: calc(50% - 30px);
+  }
+}
+
+@media (max-width: 768px) {
+  .tech-card2 {
+    width: 100%;
+  }
+
+  .rating-icons img {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+        </style>
+
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="left-section">
+            <a href="{% url 'landing_page_before_login' %}">
+                <img class="logo" src="{% static 'assets/logo.png' %}" alt="">
+
+            </a>
+            <p class="company-name">UPSKyED</p>
+            <div class="searchBar">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input type="text" id="search" name="search">
+                <a class="categories explore">
+                    Explore
+                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                </a>
+            </div>
+            <ul class="main-category">
+                <li class="first-category">Web Development</li>
+                <li class="second-category">Mobile App Development</li>
+                <li class="third-category">Programming Languages</li>
+                <li class="fourth-category"> Software Engineering</li>
+                <li class="fifth-category">Block Chain & Crypto Currency</li>
+                <li class="sixth-category">Internet of things</li>
+                <li class="seventh-category">Cloud Computing</li>
+                <li class="eight-category">Data Science & Machine Learning</li>
+                <li class="ninth-category">Cybersecurity</li>
+            </ul>
+            <ul class="web-development-category category ">
+                <li>HTML / CSS</li>
+                <li>Javascript</li>
+                <li>Bootstrap</li>
+                <li>React Js</li>
+                <li>Angular</li>
+                <li>Node Js</li>
+                <li>Express Js</li>
+            </ul>
+            <ul class="mobile-developement-category category">
+                <li>Android Development with Java/ Kotlin
+                </li>
+                <li>iOS Development with Swift</li>
+                <li> React Native </li>
+            </ul>
+            <ul class="programming-category category">
+                <li>Python</li>
+                <li>Java</li>
+                <li>C++</li>
+                <li>C#</li>
+                <li>Ruby</li>
+                <li>PHP</li>
+                <li>Go</li>
+            </ul>
+            <ul class="engineering-category category">
+                <li>Software Development Lifecycle (SDLC)</li>
+                <li>Agile and Scrum</li>
+                <li> DevOps Principles</li>
+                <li>Software Testing and Quality Assurance</li>
+            </ul>
+            <ul class="block-chain-category category">
+                <li>Blockchain Fundamentals</li>
+                <li> Smart Contract Development</li>
+                <li>Cryptocurrency and Bitcoin Basic</li>
+            </ul>
+            <ul class="iot-category category">
+                <li>Introduction to loT
+                </li>
+                <li>IoT Platforms and Technologies
+                </li>
+                <li> IoT Security and Privacy</li>
+            </ul>
+            <ul class="cloud-category category">
+                <li> Introduction to Cloud Computing
+                </li>
+                <li>Amazon Web Services (AWS)
+                </li>
+                <li>Microsoft Azure</li>
+                <li>Google Cloud Platform (GCP)</li>
+                <li>DevOps Practices and Tools</li>
+            </ul>
+            <ul class="data-science-category category">
+                <li>Python for Data Science
+                </li>
+                <li>Data Analysis with Pandas
+                </li>
+                <li>NumPy and SciPy</li>
+                <li>Machine Learning Fundamentals</li>
+                <li>Deep Learning with TensorFlow or PyTorch</li>
+                <li>Natural Language Processing</li>
+            </ul>
+            <ul class="cybersecurity-category category">
+                <li> Introduction to Cybersecurity
+                </li>
+                <li>Ethical Hacking
+                </li>
+                <li>Network Security</li>
+                <li>Web Application Security</li>
+                <li> Cryptography</li>
+                <li> Incident Response and Forensics</li>
+            </ul>
+        </div>
+        <div class="middle-section">
+            <a href="{% url 'landing_page_before_login' %}">
+                <p >Home</p>
+            </a>
+            <a href="{% url 'tech_courses' %}">
+                <p class="active">Courses</p>
+            </a>
+
+            <a href="{% url 'about_us' %}">
+                <p>About us</p>
+            </a>
+
+            <a href="{% url 'contact_us' %}">
+                <p>Contact us</p>
+            </a>
+            <a href="{% url 'faq' %}">
+                <p>FAQs</p>
+            </a>
+        </div>
+        <div class="right-section">
+
+            <button id="loginButton" class="btn loginButton">Sign in</button>
+            <button id="signupButton" class="btn signupButton">Create free account</button>
+        </div>
+    </div>
+    <div class="authentication-modal" id="auth-modal">
+        <div id="signup" class="auth signup">
+            <img class="close" src="{% static 'assets/landing_page/close.png' %}" width="25px" alt="Icon">
+            <h3 style="margin-bottom: 5px">Sign Up</h3>
+            <p style="margin-top: 0; font-size: 0.88rem;
+                font-weight: 400; margin-bottom: 40px">Sign Up to create account</p>
+                <form method="post">
+    {% csrf_token %}
+    <div class="d-flex flex-column">
+
+        <!-- Full Name -->
+        <div class="d-flex flex-column mb-3">
+            <label for="{{ studnetform.Full_Name.id_for_label }}">Full Name</label>
+            {{ studnetform.Full_Name }}
+            {% if studnetform.Full_Name.errors %}
+                <div class="text-danger">{{ studnetform.Full_Name.errors }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Mobile Number -->
+        <div class="d-flex flex-column mb-3">
+            <label for="{{ studnetform.Mobile_no.id_for_label }}">Mobile Number</label>
+            {{ studnetform.Mobile_no }}
+            {% if studnetform.Mobile_no.errors %}
+                <div class="text-danger">{{ studnetform.Mobile_no.errors }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Email -->
+        <div class="d-flex flex-column mb-3">
+            <label for="{{ studnetform.EmailID.id_for_label }}">Email</label>
+            {{ studnetform.EmailID }}
+            {% if studnetform.EmailID.errors %}
+                <div class="text-danger">{{ studnetform.EmailID.errors }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Date of Birth -->
+        <div class="d-flex flex-column mb-3">
+            <label for="{{ studnetform.DOB.id_for_label }}">Date of Birth</label>
+            {{ studnetform.DOB }}
+            {% if studnetform.DOB.errors %}
+                <div class="text-danger">{{ studnetform.DOB.errors }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Gender -->
+        <div class="d-flex flex-column mb-3">
+            <label for="{{ studnetform.Gender.id_for_label }}">Gender</label>
+            {{ studnetform.Gender }}
+            {% if studnetform.Gender.errors %}
+                <div class="text-danger">{{ studnetform.Gender.errors }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Create Password -->
+        <div class="d-flex flex-column mb-3">
+            <label for="id_password1">Create Password</label>
+
+                {{ studnetform.password1 }}
+
+            {% if studnetform.password1.errors %}
+                <div class="text-danger">{{ studnetform.password1.errors }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Re-enter Password -->
+        <div class="d-flex flex-column mb-3">
+            <label for="id_password2">Re-enter Password</label>
+                {{ studnetform.password2 }}
+
+            {% if studnetform.password2.errors %}
+                <div class="text-danger">{{ studnetform.password2.errors }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="join mt-3">Join For Free</button>
+    </div>
+</form>
+
+            <!-- <form method="post">
+                {% csrf_token %}
+                <div class="d-flex flex-column">
+                    <div class="d-flex flex-column">
+                        <label for="fullname">Full Name</label>
+                        <input type="text" id="fullname" placeholder="Full Name"/>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="email address"/>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <label for="password">Password</label>
+                        <div class="d-flex" style="position: relative;">
+                            <input type="password" id="passwordS" placeholder="Enter your password">
+                            <button onclick="togglePasswordVisibilityC()" type="button" style="border:none;position: absolute;right: 0;bottom: 42%;background-color: transparent;"><i id="toggleIconS" class="fa-solid fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <p style="font-size: 12px;color: #656567;line-height: 18px;align-self: flex-start;">Between 8 and 72 characters</p>
+                </div>
+            </form> -->
+                    <div class="break">
+                <hr>
+                <p style="font-size: 0.88rem; color: #98989A; font-weight: 300; padding: 6px">OR</p>
+                <hr>
+            </div>
+            <button class="social-btn">
+                <img src="{% static 'assets/landing_page/google.png' %}" alt="" width="20px" style="margin-top: 10px;">
+                <p style="margin-bottom: 10px;">Continue with Google</p>
+            </button>
+            <button class="social-btn">
+                <img src="{% static 'assets/landing_page/facebook.png' %}" alt="" width="20px" style="margin-top: 10px;">
+                <p style="margin-bottom: 10px;">Continue with Facebook</p>
+            </button>
+            <p style="font-size: 0.92rem">Already have an account with UPSKyED? <a href="#" class="login">Log
+                    In</a></p>
+        </div>
+
+        <div id="login" class="auth login">
+
+            <img class="close" src="{% static 'assets/landing_page/close.png' %}" width="25px" alt="Icon">
+            <h3 style="margin-bottom: 45px">Welcome back</h3>
+       <form method="post">
+    {% csrf_token %}
+    <div class="d-flex flex-column">
+        <div class="d-flex flex-column">
+            <label for="inEmail">Email</label>
+            <input id="inEmail" type="email" name="email"/>
+        </div>
+        <div class="d-flex flex-column">
+            <label for="password">Password</label>
+            <div class="d-flex" style="position: relative;">
+                <input type="password" id="inPass" name="password" placeholder="Enter your password">
+                <button onclick="togglePasswordVisibilityI()" type="button" style="border:none;position: absolute;right: 0;bottom: 42%;background-color: transparent;">
+                    <i id="toggleIconI" class="fa-solid fa-eye"></i>
+                </button>
+            </div>
+        </div>
+        <p style="align-self: flex-start;text-decoration: underline;color: #0085FF;line-height: 18px;font-weight: 400;font-size: 12px;">Forgot password?</p>
+
+        <!-- Login button -->
+        <button type="submit" class="btn btn-primary mt-3">Login</button>
+    </div>
+</form>
+
+            <!-- <form method="post">
+                {% csrf_token %}
+                <div class="d-flex flex-column">
+                    <div class="d-flex flex-column">
+                        <label for="inEmail">Email</label>
+                        <input id="inEmail" type="email"/>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <label for="password">Password</label>
+                        <div class="d-flex" style="position: relative;">
+                            <input type="password" id="passIn" placeholder="Enter your password">
+                            <button id="inPass" onclick="togglePasswordVisibilityIn()" type="button" style="border:none;position: absolute;right: 0;bottom: 42%;background-color: transparent;"><i id="toggleIconIn" class="fa-solid fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <p style="align-self: flex-start;text-decoration: underline;color: #0085FF;line-height: 18px;font-weight: 400;font-size: 12px;">Forgot password?</p>
+                </div>
+            </form> -->
+            <div class="break">
+                <hr>
+                <p style="font-size: 0.88rem; color: #98989A; font-weight: 300; padding: 6px">OR</p>
+                <hr>
+            </div>
+            <button class="social-btn">
+                <img src="{% static 'assets/landing_page/google.png' %}" alt="" width="20px" style="margin-top: 10px;">
+                <p style="margin-bottom: 10px;">Continue with Google</p>
+            </button>
+            <button class="social-btn">
+                <img src="{% static 'assets/landing_page/facebook.png' %}" alt="" width="20px" style="margin-top: 10px;">
+                <p style="margin-bottom: 10px;">Continue with Facebook</p>
+            </button>
+            <p style="font-size: 0.92rem">New to UPSKyED? <a href="#" class="signup">Sign Up</a></p>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="tech-courses-container">
+            <h3> Our Tech Courses</h3>
+            <div class="tech-course-names-container">
+                <a href="{% url 'tech_courses' %}">
+                    <p class="tech-course-name">WEB DEVELOPMENT</p>
+                </a>
+                <a href="{% url 'tech_courses' %}">
+                    <p class="tech-course-name">MOBILE APP DEVELOPMENT</p>
+                </a>
+                <a href="{% url 'tech_courses' %}">
+                    <p class="tech-course-name">PROGRAMMING LANGUAGES</p>
+                </a>
+                <a href="{% url 'tech_courses' %}">
+                    <p class="tech-course-name">SOFTWARE ENGINEERING</p>
+                </a>
+                <a href="{% url 'tech_courses' %}">
+                    <p class="tech-course-name">INTERNET OF THINGS</p>
+                </a>
+                <a href="{% url 'tech_courses' %}">
+                    <p class="tech-course-name">CLOUD COMPUTING</p>
+                </a>
+                <a href="{% url 'tech_courses' %}">
+                    <p class="tech-course-name">CYBER SECURITY</p>
+                </a>
+                <a href="{% url 'tech_courses' %}">
+                    <p class="tech-course-name">DATA SCIENCE & MACHINE LEARNING</p>
+                </a>
+                <a href="{% url 'tech_courses' %}">
+                    <p class="tech-course-name">GRAPHIC DESIGN</p>
+                </a>
+                <a href="{% url 'tech_courses' %}">
+                    <p class="tech-course-name">STOCK MARKET</p>
+                </a>
+                <a href="{% url 'tech_courses' %}">
+                    <p class="tech-course-name">UI/UX</p>
+                </a>
+                <a href="{% url 'tech_courses' %}">
+                    <p class="tech-course-name">EXCEL(BEGINEER TO ADVANCE)</p>
+                </a>
+                <a href="{% url 'tech_courses' %}">
+                    <p class="tech-course-name">DIGITAL MARKETING</p>
+                </a>
+                <a href="{% url 'tech_courses' %}">
+                    <p class="tech-course-name">R LANGUAGE</p>
+                </a>
+            </div>
+
+            <div class="tech-card-container">
+        {% for course in tech_courses %}
+        <div class="tech-card2">
+          {% if course.image %}
+          <img src="{{ course.image.url }}" alt="{{ course.title }}">
+          {% else %}
+          <img src="{% static 'default_user.jpeg' %}" alt="Default Course Image">
+          {% endif %}
+          <div class="card-body2">
+            <p style="font-weight: 600; color: white;">{{ course.title }}</p>
+            <p class="academy">Duration</p>
+            <div class="rating-container">
+              <p class="rating">4.0</p>
+              <div class="rating-icons">
+                <img src="{% static 'assets/landing_page/favourite.png' %}" alt="" width="100px" height="100px">
+                <img src="{% static 'assets/landing_page/favourite.png' %}" alt="" width="100px" height="100px">
+                <img src="{% static 'assets/landing_page/favourite.png' %}" alt="" width="100px" height="100px">
+                <img src="{% static 'assets/landing_page/favourite.png' %}" alt="" width="100px" height="100px">
+                <img src="{% static 'assets/landing_page/star.png' %}" alt="" width="100px" height="100px">
+              </div>
+            </div>
+            <p>₹{{ course.price }}</p>
+          </div>
+          <a class="view-more" href="{% url 'courses' course.id %}">
+            <button>View More</button>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+        </div>
+    </div>
+        <!-- <footer class="footer-section">
+            <div class="company-details">
+                <div class="description">
+                    <h3 style="font-weight: 600;color: #0085FF">E-Learning</h3>
+                </div>
+                <div class="app">
+                    <p style="font-size: 1rem; color: #fff;">Top learning experiences that <br>create more
+                        talent in the world.</p>
+                </div>
+                <div>
+                    <ul>
+                        <li class="list-header">Company</li>
+                        <a href="{% url 'about_us' %}">
+                            <li>About us</li>
+                        </a>
+                        <a href="{% url 'faq' %}">
+                            <li>FAQs</li>
+                        </a>
+                        <a href="{% url 'blog' %}">
+                            <li>Blog</li>
+                        </a>
+                        <a href="{% url 'ticket' %}">
+                            <li>Support</li>
+                        </a>
+
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li class="list-header">Social</li>
+                        <li>Twitter</li>
+                        <li>LinkedIn</li>
+                        <li>GitHub</li>
+                        <li>Dribble</li>
+
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li class="list-header">Legal</li>
+                        <li>Terms</li>
+                        <li>Privacy</li>
+                        <a href="{% url 'contact_us' %}">
+                            <li>Contact Us</li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-below-section">
+                <p>© 2024 E-Learning. All rights reserved.</p>
+                <div class="socials">
+                    <i class="fa fa-linkedin" aria-hidden="true"></i>
+                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                    <i class="fa fa-github" aria-hidden="true"></i>
+                    <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                </div>
+            </div>
+        </footer>-->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const categories = document.querySelector('.left-section .categories');
+            const categoryList = document.querySelector('.main-category');
+            const mainCategories = document.querySelectorAll('.main-category li');
+            const categoryLists = document.querySelectorAll('.category');
+
+            categories.addEventListener('click', function () {
+                // Toggle the 'active' class on the main category list
+                categoryList.classList.toggle('active');
+                categoryLists.forEach(function (category) {
+                    category.classList.remove('active');
+                });
+            });
+
+            mainCategories.forEach(function (mainCategory, index) {
+                mainCategory.addEventListener('click', function () {
+                    // Remove the 'active' class from all category lists
+                    categoryLists.forEach(function (category) {
+                        category.classList.remove('active');
+                    });
+
+                    // Add the 'active' class to the clicked category list
+                    categoryLists[index].classList.add('active');
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const profile = document.querySelector('.profile');
+            const listItems = document.querySelectorAll('.profile-container ul li');
+            const ul = document.querySelector('.profile-container ul');
+            const chevron = document.querySelector('.fa-chevron-down');
+
+            // Toggle 'active' class on ul when profile is clicked
+            profile.addEventListener('click', function () {
+                ul.classList.toggle('active');
+                chevron.classList.toggle('rotate');
+            });
+
+            // Add 'active' class to clicked li and remove from others
+            listItems.forEach(function (item) {
+                item.addEventListener('click', function () {
+                    // Remove active class from all list items
+                    listItems.forEach(function (li) {
+                        li.classList.remove('active');
+                    });
+
+                    // Add active class to the clicked item
+                    this.classList.add('active');
+                });
+            });
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuIcons = document.querySelectorAll('#menu-icon');
+
+            menuIcons.forEach((menuIcon, index) => {
+                menuIcon.addEventListener('click', function () {
+                    const cardMenu = menuIcon.nextElementSibling;
+                    cardMenu.classList.toggle('inactive');
+                });
+            });
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const modalContainer = document.getElementById('modal-container');
+            const shareModal = document.querySelector('.share-modal');
+            const ratingModal = document.querySelector('.rating-modal');
+            const cartModal = document.querySelector(".cart-modal")
+
+            // Buttons to open modals
+            const shareButtons = document.querySelectorAll('#share-btn');
+            const rateButtons = document.querySelectorAll('#rate-btn');
+            const cartButtons = document.querySelectorAll('#cart-btn');
+
+            // Add click event listeners to buttons
+            shareButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    modalContainer.classList.add('active');
+                    shareModal.classList.add('active');
+                    ratingModal.classList.remove('active');
+                    cartModal.classList.remove("active")
+                });
+            });
+
+            // Add click event listeners to rate buttons
+            rateButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    modalContainer.classList.add('active');
+                    ratingModal.classList.add('active');
+                    shareModal.classList.remove('active');
+                    cartModal.classList.remove("active")
+                });
+            });
+
+            cartButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    modalContainer.classList.add('active');
+                    ratingModal.classList.remove('active');
+                    shareModal.classList.remove('active');
+                    cartModal.classList.add("active")
+                });
+            });
+
+            // Close buttons inside modals
+            const closeButtons = document.querySelectorAll('.modal-container .close');
+
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    modalContainer.classList.remove('active');
+                    shareModal.classList.remove('active');
+                    ratingModal.classList.remove('active');
+                    cartModal.classList.remove("active")
+                });
+            });
+
+            // Close modal when clicking outside of it
+            window.addEventListener('click', function (event) {
+                if (event.target === modalContainer) {
+                    modalContainer.classList.remove('active');
+                    shareModal.classList.remove('active');
+                    ratingModal.classList.remove('active');
+                    cartModal.classList.remove("active")
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const favouriteIcon = "{% static 'assets/landing_page/favourite.png' %}";
+            const starIcon = "{% static 'assets/landing_page/star.png' %}";
+            const ratingStars = document.querySelectorAll('.star-icons .rating-star');
+
+            ratingStars.forEach(star => {
+                star.addEventListener('click', function () {
+                    const rating = this.getAttribute('data-value');
+                    updateRating(rating);
+                });
+            });
+
+            function updateRating(rating) {
+                ratingStars.forEach(star => {
+                    const starValue = star.getAttribute('data-value');
+                    if (starValue <= rating) {
+                        star.setAttribute('src', favouriteIcon);
+                    } else {
+                        star.setAttribute('src', starIcon);
+                    }
+                });
+            }
+        });
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get all card body elements
+            const cardBodies = document.querySelectorAll(".card-body");
+
+            // Add click event listener to each card body
+            cardBodies.forEach(function (cardBody) {
+                cardBody.addEventListener("click", function () {
+                    // Find the closest inside-container and toggle the course-details within it
+                    const insideContainer = this.closest(".inside-container");
+                    const courseDetails = insideContainer.querySelector(".course-details");
+                    courseDetails.classList.toggle("show");
+                });
+            });
+        });
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Select all like buttons
+            const likeButtons = document.querySelectorAll(".like");
+
+            // Loop through each like button
+            likeButtons.forEach(function (likeButton) {
+                // Select active and inactive heart icons within the current like button
+                const activeHeart = likeButton.querySelector(".fa-heart");
+                const inactiveHeart = likeButton.querySelector(".fa-heart-o");
+
+                // Add click event listener to the current like button
+                likeButton.addEventListener("click", function () {
+                    // Toggle the "inactive" class for both heart icons within the current like button
+                    activeHeart.classList.toggle("inactive");
+                    inactiveHeart.classList.toggle("inactive");
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const categories = document.querySelector('.left-section .categories');
+            const categoryList = document.querySelector('.main-category');
+            const mainCategories = document.querySelectorAll('.main-category li');
+            const categoryLists = document.querySelectorAll('.category');
+
+            categories.addEventListener('click', function () {
+                // Toggle the 'active' class on the main category list
+                categoryList.classList.toggle('active');
+                categoryLists.forEach(function (category) {
+                    category.classList.remove('active');
+                });
+            });
+
+            mainCategories.forEach(function (mainCategory, index) {
+                mainCategory.addEventListener('click', function () {
+                    // Remove the 'active' class from all category lists
+                    categoryLists.forEach(function (category) {
+                        category.classList.remove('active');
+                    });
+
+                    // Add the 'active' class to the clicked category list
+                    categoryLists[index].classList.add('active');
+                });
+            });
+        });
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const loginButton = document.getElementById("loginButton");
+            const signupButton = document.getElementById("signupButton");
+            const loginModal = document.getElementById("login");
+            const signupModal = document.getElementById("signup");
+            const modalContainer = document.getElementById("auth-modal");
+
+            function openModal(modal) {
+                modalContainer.classList.add("active");
+                modal.classList.add("active");
+            }
+
+            function closeModal() {
+                modalContainer.classList.remove("active");
+                loginModal.classList.remove("active");
+                signupModal.classList.remove("active");
+            }
+
+            loginButton.addEventListener("click", function () {
+                closeModal(); // Close any open modals first
+                openModal(loginModal);
+            });
+
+            signupButton.addEventListener("click", function () {
+                closeModal(); // Close any open modals first
+                openModal(signupModal);
+            });
+
+            modalContainer.addEventListener("click", function (event) {
+                if (event.target === modalContainer) {
+                    closeModal();
+                }
+            });
+
+            const closeModalButtons = document.querySelectorAll(".close");
+            closeModalButtons.forEach(button => {
+                button.addEventListener("click", closeModal);
+            });
+        });
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Select all sliders on the page
+            const sliders = document.querySelectorAll(".wrapper");
+
+            sliders.forEach(function (slider) {
+                const carousel = slider.querySelector(".carousel");
+                const firstCardWidth = carousel.querySelector(".card").offsetWidth;
+                const leftButton = slider.querySelector(".left");
+                const rightButton = slider.querySelector(".right");
+
+                leftButton.addEventListener("click", () => {
+                    carousel.scrollLeft -= firstCardWidth;
+                });
+
+                rightButton.addEventListener("click", () => {
+                    carousel.scrollLeft += firstCardWidth;
+                });
+            });
+        });
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+/* Additional responsive styles for the sidebar */
+
+/* Small screen adjustments */
+@media screen and (max-width: 576px) {
+  .sidebar {
+    padding: 15px 10px;
+    width: 85%;
+  }
+  
+  .sidebar-item, 
+  .sidebar-item2 {
+    margin-top: 15px;
+  }
+  
+  .sidebar-logo-cover {
+    padding: 5px 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .sidebar-logo-cover span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80%;
+  }
+  
+  .dropdown-content li {
+    padding: 8px 12px;
+    font-size: 13px;
+    white-space: normal;
+  }
+  
+  .hamburger-menu {
+    height: 20px;
+    width: 24px;
+    margin-right: 10px;
+  }
+  
+  .logo {
+    margin-left: 0;
+  }
+  
+  #logo-name {
+    width: 6rem;
+    height: auto;
+  }
+}
+
+/* Additional mobile navigation enhancement */
+@media screen and (max-width: 768px) {
+  body.menu-open {
+    overflow: hidden;
+  }
+  
+  /* Improve touch targets for mobile */
+  .sidebar-item,
+  .sidebar-item2,
+  .dropdown-content li {
+    padding: 10px 8px;
+    margin: 8px 0;
+  }
+  
+  /* Style active items better on mobile */
+  .sidebar-item.active {
+    background-color: rgba(103, 129, 142, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+  }
+  
+  /* Improve dropdown spacing */
+  .dropdown.open .dropdown-content {
+    margin: 5px 0 5px 15px;
+    max-height: 250px;
+    overflow-y: auto;
+  }
+  
+  /* Better arrow positioning */
+  .icon-arrow {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  /* Fix for the logout link on mobile */
+  #log-out-anchor {
+    display: block;
+    width: 100%;
+  }
+  
+  /* Make sure hamburger is visible only on mobile */
+  .hamburger-menu {
+    display: flex;
+  }
+  
+  /* Ensure sidebar text is visible on mobile */
+  .sidebar.mobile-open .sidebar-item span,
+  .sidebar.mobile-open .sidebar-logo-cover span,
+  .sidebar.mobile-open #log-out {
+    display: inline-block !important;
+  }
+  
+  /* Fix sidebar positioning */
+  .sidebar {
+    transition: left 0.3s ease;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Improved sidebar transitions */
+.sidebar {
+  transform-origin: left center;
+  transition: transform 0.3s ease, left 0.3s ease, width 0.3s ease;
+}
+
+/* Improved close button styling */
+.sidebar.mobile-open .hamburger-menu.active {
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  z-index: 1010;
+}
+
+/* Improve X appearance for better visibility */
+.hamburger-menu.active .bar {
+  background-color: #67818E;
+  width: 100%;
+}
+
+.hamburger-menu.active .bar:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.hamburger-menu.active .bar:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+/* Make sure the header has enough space for the close button */
+.sidebar.mobile-open .sidebar-header {
+  padding-right: 40px;
+  position: relative;
+}

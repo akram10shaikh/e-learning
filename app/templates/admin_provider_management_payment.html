@@ -1,0 +1,102 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowlegopedia</title>
+    <link rel="stylesheet" href="{% static 'css/admin_provider_management_payment.css' %}">
+</head>
+<body>
+
+<!-- Container that contains "tables" STARTS -->
+
+        <!-- Container that contains " PAYMENT table" -->
+        <h1 id="main-payment-heading">PAYMENT</h1>
+        <div id="tables">
+        <div class="each-table-container">
+            <h2 class="sub-payment-heading">PAID PAYMENT</h2>
+            <table id="table1">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Invoice No</th>
+                        <th>Name</th>
+                        <th>Month</th>
+                        <th>Course Name</th>
+                        <th>No.of enrollments</th>
+                        <th>Per share</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th id="bill">Bill</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for payment_paids in payment_paid %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ payment_paids.invoice_id }}</td>
+                        <td>{{ payment_paids.student.name }}</td>
+                        <td>{{ payment_paids.date_of_payment }}</td>
+                        <td>{{ payment_paids.course.course_name }}</td>
+                        <td>1 Users</td>
+                        <td>$50</td>
+                        <td>{{ payment_paids.amount }}</td>
+                        <td>{{ payment_paids.status }}</td>
+                        <td>{{ payment_paids.amount }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="each-table-container">
+            <h2 class="sub-payment-heading">PENDING PAYMENT</h2>
+            <table id="table2">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Invoice No</th>
+                        <th>Name</th>
+                        <th>Month</th>
+                        <th>Course Name</th>
+                        <th>No.of enrollments</th>
+                        <th>Per share</th>
+                        <th>Amount</th>
+                        <th>Pay</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for payment_pending in payment_pendings %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ payment_pending.invoice_id }}</td>
+                        <td>{{ payment_pending.student.name }}</td>
+                        <td>{{ payment_pending.date_of_payment }}</td>
+                        <td>{{ payment_pending.course.course_name }}</td>
+                        <td>1 Users</td>
+                        <td>$50</td>
+                        <td>{{ payment_pending.amount }}</td>
+                        <td>{{ payment_pending.status }}</td>
+                        <td>{{ payment_pending.amount }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+<!-- Container that contains "tables" ENDS -->
+
+<script>
+
+    function goToPaymentViewPage() {
+        window.location.href = "{% url 'admin_provider_management_payment_view' %}";
+    }
+    function goToPaymentPayPage() {
+        window.location.href = "{% url 'admin_provider_management_payment_pay' %}";
+    }
+
+</script>
+</body>
+</html>

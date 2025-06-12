@@ -1,0 +1,235 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/admin_main_dashboard.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- Main container that contains "statics boxes", "graph" and "tables" -->
+
+    <div class="container">
+        <h2 id="main-heading">DASHBOARD</h2>
+
+        <!-- Container that contains "statics boxes", "graph" STARTS-->
+        <div class="graph-enroll-boxes-wrapper">
+
+            <!-- Container that contains "statics boxes" STARTS-->
+            <div class="earning-enroll-container">
+                <div class="statics-box  total-enroll-count">
+                    <div class="statics-box-heading">
+                        <h2>Total enrollment Count</h2>
+                        <p><span>{{ total_enrollment_count }}</span> users</p>
+                    </div>
+                    <img src="../static/admin_img/dashborad_img/total_enroll.png" alt="">
+                </div>
+                <div class="statics-box this-month-count">
+                    <div class="statics-box-heading">
+                        <h2>This month count</h2>
+                        <p><span>{{ this_month_count }}</span> users</p>
+                    </div>
+                    <img src="../static/admin_img/dashborad_img/this_month_count.png" alt="">
+                </div>
+                <div class="statics-box total-earning">
+                    <div class="statics-box-heading">
+                        <h2>Total Earnings</h2>
+                        <p><span>₹ {{ total_earnings }}</span></p>
+                    </div>
+                    <img src="../static/admin_img/dashborad_img/total_earnings.png" alt="">
+                </div>
+                <div class="statics-box this-month-earning">
+                    <div class="statics-box-heading">
+                        <h2>This month earnings</h2>
+                        <p><span>₹ {{ this_month_earnings }}</span></p>
+                    </div>
+                    <img src="../static/admin_img/dashborad_img/this_month_earnings.png" alt="">
+                </div>
+            </div>
+            <!-- Container that contains "statics boxes" ENDS-->
+
+            <!-- Container that contains "graph" STARTS-->
+            <div class="graph-container">
+                <h1>ANALYTICS</h1>
+                <div class="graph">
+                    <div class="chart-header">
+                        <div class="activity">Activity</div>
+                        <div class="months">Month</div>
+                    </div>
+                    <canvas id="abacusGraph" width="315" height="180"></canvas>
+                </div>
+            </div>
+            <!-- Container that contains "graph" ENDS-->
+
+        </div>
+
+        <!-- Container that contains "statics boxes", "graph" ENDS-->
+
+        <!-- container that contains "tables" -->
+        <div class="each-table-container">
+            <h2>COURSE EARNINGS</h2>
+            <table id="table_course_earnings">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Course Name</th>
+                        <th>No. of Enrollments</th>
+                        <th>Earnings</th>
+                        <th>Commission</th>
+                        <th>Net Profit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course in course_earnings %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ course.title }}</td>
+                        <td>{{ course.enrollments_count }}</td>
+                        <td>{{ course.total_earnings }}</td>
+                        <td>{{ course.commission }}</td>
+                        <td>{{ course.net_profit }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="each-table-container">
+            <h2>1:1 MENTORSHIP</h2>
+            <table id="table2">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Mentor</th>
+                        <th>Course</th>
+                        <th>Request Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for mentorship in mentorship_requests %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ mentorship.mentor__name }}</td>
+                        <td>{{ mentorship.course__course_name }}</td>
+                        <td>{{ mentorship.request_date }}</td>
+                        <td>
+                            <p class="{% if mentorship.status == 'Pending' %}green-status{% else %}purple-status{% endif %}">
+                                {{ mentorship.status }}
+                            </p>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">No mentorship requests found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="each-table-container">
+            <h2>COURSE PROVIDERS</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Provider Name</th>
+                        <th>Total Courses</th>
+                        <th>No. of Enrollments</th>
+                        <th>Total Earnings</th>
+                        <th>Provider Share</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for provider in course_providers %}
+                    <tr>
+                        <td>{{ provider.first_name }} {{ provider.last_name }}</td>
+                        <td>{{ provider.total_courses }}</td>
+                        <td>{{ provider.total_enrollments }}</td>
+                        <td>{{ provider.total_earnings|default_if_none:"0.00" }}</td>
+                        <td>{{ provider.per_share|default_if_none:"0.00" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="each-table-container">
+            <h2>AFFILIATE MARKETERS</h2>
+            <table id="table4">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Invoice No</th>
+                        <th>Name</th>
+                        <th>Month</th>
+                        <th>No.of enrollments</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for marketer in affiliate_marketers %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ marketer.invoice_id }}</td>
+                        <td>{{ marketer.name }}</td>
+                        <td>{{ marketer.month|date:"F Y" }}</td>
+                        <td>{{ marketer.total_enrollments }}</td>
+                        <td>{{ marketer.total_amount }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="each-table-container">
+            <h2>SUPPORT PANEL</h2>
+            <table id="table5">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Ticket id</th>
+                        <th>Created date</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Sub-Category</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ticket in support_tickets %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ ticket.unique_id }}</td>
+                        <td>{{ ticket.timestamp }}</td>
+                        <td>{{ ticket.user }}</td>
+                        <td>{{ ticket.category }}</td>
+                        <td>{{ ticket.sub_category }}</td>
+                        <td>
+                            <p class="{% if ticket.status == 'open' %}green-status{% else %}purple-status{% endif %}">
+                                {{ ticket.status }}
+                            </p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+<br>
+    <br>
+    <br>
+    <br>
+    <div id="monthly-incomes" style="display: none;">{{ monthly_incomes|safe }}</div>
+
+    <script src="{% static 'js/admin_main_dashboard.js' %}"></script>
+</body>
+
+
+</html>

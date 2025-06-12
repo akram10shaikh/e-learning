@@ -1,0 +1,231 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referral Details</title>
+    <link rel="stylesheet" href="{% static 'css/admin_affiliate_marketing_create_account.css' %}">
+    <style>
+    </style>
+</head>
+<body>
+    <form method="post" action="{% url 'admin_affiliate_marketing_create_account1' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div id="main-head-container"><h2 id="main-heading">USER PROFILE</h2></div>
+
+    <div class="profile-container">
+        <div class="profile-photo">
+            <img id="imagePreview" src="../static/admin_img/course_management_img/course_profile_img/images.jpeg" alt="">
+             <input type="file" id="imageUpload" name="image" class="file-upload" accept="image/*" onchange="previewImage(event)">
+        </div>
+        <div class="upload-btns">
+            {% comment %} <button class="pink-btn">Upload New Photo</button> {% endcomment %}
+            {% comment %} <button class="edit-btns">Delete</button> {% endcomment %}
+        </div>
+    </div>
+
+    <section id="name-section">
+
+        <div class="input-box-container">
+            <h4 class="input-box-heading">First Name</h4>
+            <input name="first_name" class="input-box" type="text" placeholder="eg.Phoebe" id="firstName">
+        </div>
+
+        <div class="input-box-container">
+            <h4 class="input-box-heading">Last Name</h4>
+            <input name="last_name" class="input-box" type="text" placeholder="eg.Buffay" id="lastName">
+        </div>
+        <div class="input-box-container">
+            <h4 class="input-box-heading2">Email Address</h4>
+            <div class="input-icon-container">
+            <img class="input-icon" src="../static/admin_img/add_provider_img/Vector.png" alt="">
+            <input class="input-box" name="email" type="email" placeholder="" id="emailAddress">
+        </div>
+        </div>
+
+        <div class="input-box-container">
+            <h4 class="input-box-heading2">Phone Number</h4>
+            <div class="input-icon-container">
+            <img class="input-icon" src="../static/admin_img/add_provider_img/phone_png.png" alt="">
+            <input name="phone_number" class="input-box" type="number" placeholder="" id="phoneNumber">
+        </div>
+        </div>
+
+
+        <div class="input-box-container">
+            <h4 class="input-box-heading2">Date of Birth</h4>
+            <div class="input-icon-container">
+            <img class="input-icon" src="../static/admin_img/add_provider_img/card_icon.png" alt="">
+            <input name="DOB" class="input-box" type="date" placeholder="" id="accountName">
+            </div>
+        </div>
+        <div class="input-box-container">
+            <h4 class="input-box-heading2">Gender</h4>
+            <div class="input-icon-container">
+            <img class="input-icon" src="../static/admin_img/add_provider_img/gender.png" alt="">
+            <input name="gender" class="input-box" type="text" placeholder="" id="gender">
+        </div>
+        </div>
+    </section>
+
+    <section id="info-container">
+
+        <div class="input-box-container">
+            <h4 class="input-box-heading2">Account Name</h4>
+            <div class="input-icon-container">
+            <img class="input-icon" src="../static/admin_img/add_provider_img/bank.png" alt="">
+            <input name="account_name" class="input-box" type="text" placeholder="" id="accountName">
+        </div>
+        </div>
+
+        <div class="input-box-container">
+            <h4 class="input-box-heading2">Account Number</h4>
+            <div class="input-icon-container">
+            <img class="input-icon" src="../static/admin_img/add_provider_img/card_icon_2.png" alt="">
+            <input name="account_number" class="input-box" type="number" placeholder="" id="accountNumber">
+            </div>
+        </div>
+
+
+        <div class="input-box-container">
+            <h4 class="input-box-heading2">Bank Name</h4>
+            <div class="input-icon-container">
+            <img class="input-icon" src="../static/admin_img/add_provider_img/bank.png" alt="">
+            <input name="bank_name" class="input-box" type="text" placeholder="" id="bankName">
+        </div>
+        </div>
+
+        <div class="input-box-container">
+            <h4 class="input-box-heading2">IFSC Code</h4>
+            <div class="input-icon-container">
+            <img class="input-icon" src="../static/admin_img/add_provider_img/ifsc_icon.png" alt="">
+            <input name="ifsc_code" class="input-box" type="text" placeholder="" id="ifscCode">
+            </div>
+        </div>
+
+        <div class="input-box-container">
+            <h4 class="input-box-heading2">Account Type</h4>
+            <div class="input-icon-container">
+            <img class="input-icon" src="../static/admin_img/add_provider_img/account_type.png" alt="">
+            <input name="account_type" class="input-box" type="text" placeholder="" id="accountType">
+            </div>
+        </div>
+    </section>
+        <section class="select-course-section">
+
+            <div class="input-box-container2" id="location">
+                <h4 class="input-box-heading">Location</h4>
+                <div class="input-icon-container">
+                    <img class="input-icon" src="../static/admin_img/add_provider_img/location.png" alt="">
+                <input name="location" class="input-box" type="text" placeholder="" id="locationInput">
+                </div>
+            </div>
+
+
+        </section>
+
+
+    <section class="password-section">
+        <div class="input-box-container">
+            <h4 class="input-box-heading2">Password</h4>
+            <div class="input-icon-container">
+            <img class="input-icon" src="../static/admin_img/add_provider_img/pass_key.png" alt="">
+            <input name="password1" class="input-box" type="password" placeholder="" id="currentPassword">
+
+            <img class="input-icon eye-icon" src="../static/admin_img/add_provider_img/eye-icon.png" alt="Toggle Password" onclick="togglePassword('currentPassword')">
+            </div>
+        </div>
+
+        <div class="input-box-container">
+            <h4 class="input-box-heading2">Confirm Password </h4>
+            <div class="input-icon-container">
+            <img class="input-icon" id="passKey" src="../static/admin_img/add_provider_img/pass_key.png" alt="">
+            <input name="password2" class="input-box" type="password" placeholder="" id="newPassword">
+
+            <img class="input-icon eye-icon" src="../static/admin_img/add_provider_img/eye-icon.png" alt="Toggle Password" onclick="togglePassword('newPassword')">
+            <p id="passwordError" style="color:red; font-size: 14px;"></p>
+        </div>
+        </div>
+    </section>
+
+    {% comment %} <section id="confirm-password">
+        <div class="input-box-container2">
+            <h4 class="input-box-heading">Confirm New Password</h4>
+            <div class="input-icon-container">
+            <img class="input-icon" id="passKey2" src="../static/admin_img/add_provider_img/pass_key.png" alt="">
+
+            <input class="input-box" type="password" placeholder="" id="confirmNewPassword">
+
+            <img class="input-icon eye-icon" src="../static/admin_img/add_provider_img/eye-icon.png" alt="Toggle Password" onclick="togglePassword('confirmNewPassword')">
+            </div>
+        </div>
+    </section> {% endcomment %}
+    <div class="bottom-btn-container">
+        {% comment %} <button class="edit-btns">Cancel</button> {% endcomment %}
+        <button  type="submit" class="pink-btn">Create Account</button>
+    </div>
+     {% comment %} <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_name">Name</label>
+            <input type="text" class="form-control" id="id_name" name="name" placeholder="Enter name">
+        </div>
+        <div class="form-group">
+            <label for="id_email">Email</label>
+            <input type="email" class="form-control" id="id_email" name="email" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+            <label for="id_commission_percentage">Commission Percentage</label>
+            <input type="number" class="form-control" id="id_commission_percentage" name="commission_percentage" step="0.01" placeholder="Enter commission percentage">
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="id_frozen" name="frozen">
+            <label class="form-check-label" for="id_frozen">Frozen</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form> {% endcomment %}
+    {% comment %} <div class="suspendAccountBtn-container" >
+        <button class="edit-btns" id="suspendAccountBtn">Add Account</button>
+        <button class="edit-btns" id="cancel">Cancel</button>
+    </div> {% endcomment %}
+</form>
+  <script>
+ function togglePassword(id) {
+      const passwordInput = document.getElementById(id);
+      if (passwordInput) {
+        const inputType = passwordInput.getAttribute('type');
+        passwordInput.setAttribute('type', inputType === 'password' ? 'text' : 'password');
+      } else {
+        console.error(`Password input element with ID ${id} not found.`);
+      }
+    }
+  </script>
+  <script>
+document.getElementById("newPassword").addEventListener("input", checkPasswords);
+document.getElementById("currentPassword").addEventListener("input", checkPasswords);
+
+function checkPasswords() {
+    const password1 = document.getElementById("currentPassword").value;
+    const password2 = document.getElementById("newPassword").value;
+    const errorText = document.getElementById("passwordError");
+
+    if (password1 && password2 && password1 !== password2) {
+        errorText.textContent = "Passwords do not match.";
+    } else {
+        errorText.textContent = "";
+    }
+}
+</script>
+<script>
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('imagePreview');
+            if (file) {
+                preview.src = URL.createObjectURL(file);
+                preview.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

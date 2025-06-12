@@ -1,0 +1,254 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="{% static 'css/admin_signup.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>SignUp</title>
+    <style>
+        /* Reset some defaults */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Layout */
+.login-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height: 100vh;
+    align-items: stretch;
+}
+
+/* Left container */
+.login-container {
+   flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto; /* ADD THIS */
+    max-height: 100vh; /* ADD THIS */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Heading */
+.login-heading-container {
+    margin-bottom: 10px;
+}
+
+.login-heading {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Google signup */
+.login-with-google-container {
+    margin-bottom: 20px;
+}
+
+.login-with-google {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: #444;
+    font-weight: 500;
+    background-color: #fff;
+    transition: 0.3s;
+}
+
+.login-with-google img {
+    width: 20px;
+    margin-right: 10px;
+}
+
+.login-with-google:hover {
+    background-color: #f1f1f1;
+}
+
+/* OR line */
+.or-line {
+    text-align: center;
+    margin: 20px 0;
+    color: #888;
+}
+
+/* Form */
+#login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#login-form h2 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+#login-form input,
+#login-form select {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.btn.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Sign-in section */
+.form-sign-in-container {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+
+.form-sign-in-container img {
+    width: 25px;
+    margin-left: 10px;
+}
+
+.form-sign-in {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.form-sign-in:hover {
+    text-decoration: underline;
+}
+
+/* Right image section */
+.login-side-image {
+    flex: 1;
+    background: linear-gradient(to right, #f77b7b, #fba3a3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    min-height: 100vh;
+    text-align: center;
+    color: white;
+}
+
+.login-side-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+.login-wrapper {
+    width: 100%;
+    max-width: 350px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .login-section {
+        flex-direction: column;
+    }
+
+    .login-side-image {
+        min-height: 250px;
+    }
+
+    .login-container {
+        max-height: unset; /* allow full height on small screens */
+        overflow-y: visible;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <section class="login-section" >
+
+        <div class="login-container">
+            <div class="login-wrapper">
+
+            <div class="login-heading-container">
+                <h5 class="login-heading">Create an account</h5>
+            </div>
+            <div class="login-with-google-container">
+                <a href="#" class="login-form-anchor login-with-google"><img src="{%static 'admin_img/Log_in_img/google-icon.png' %}" alt="">Sign up with Google</a>
+            </div>
+
+            <p class="or-line">OR</p>
+
+
+            <form method="post" id="login-form">
+                {% csrf_token %}
+                <h4><i class="fas fa-user-plus signup-icon"></i>Admin Signup</h4>
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+
+
+            <div class="form-sign-in-container">
+                <p>Already have an Account?  </p>
+                <a href="{% url 'landing_page_before_login' %}" class="form-sign-in"> Log in </a>
+                <img src="../static/admin_img/providers_login_img/signIn-icon.png" alt="">
+            </div>
+        </div>
+        </div>
+
+
+        <div class="login-side-image">
+            <img src="{%static 'admin_img/Log_in_img/Frame 1321314641.png' %}" alt="">
+        </div>
+
+    </section>
+    <script>
+        function togglePasswordVisibility() {
+    var passwordField = document.getElementById("password");
+    var eyeIcon = document.getElementById("eye-icon");
+
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        eyeIcon.classList.remove("fa-eye");
+        eyeIcon.classList.add("fa-eye-slash");
+    } else {
+        passwordField.type = "password";
+        eyeIcon.classList.remove("fa-eye-slash");
+        eyeIcon.classList.add("fa-eye");
+    }
+}
+    </script>
+</body>
+</html>
+
+
+

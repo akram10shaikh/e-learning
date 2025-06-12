@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/admin_marketing_promotion_view_bills.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
+    <h2 id="view-bills-heading">VIEW BILLS</h2>
+    <!-- Table Section STARTS -->
+     <div class="sort-continer">
+        <p>Sort By : </p>
+        <select id="sortSelect" onchange="sortTable()">
+            <option class="sort-option" value="default">Default</option>
+            <option class="sort-option" value="voucher">Voucher</option>
+        </select>
+        <i class="dropdown-icon fa fa-chevron-down"></i> 
+     </div>
+    <div class="total-row-current-page-container">
+        <div class="current-page" id="current-page2">
+            <img src="../static/admin_img/student_management_img/course_enroll_img/home_icon.png" alt="" class="home-icon">
+
+            {% for item in breadcrumb2 %}
+                <img src="../static/admin_img/student_management_img/course_enroll_img/page_arrow.png" alt="" class="page-arrow">
+                {% if forloop.first %}
+                    <!-- Here the Course Name is stored from the breadcrumb -->
+                    <p class="current-page-info" id="studentManagement">{{ item }}</p>
+                {% else %}
+                    <p class="current-page-info">{{ item }}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="total-rows" id="totalCourses">Total Course Enrollments: {{ total_course_enrollments2 }}</div>
+    </div>
+
+    <div class="referralTable-container">
+        <table id="referralTable2">
+    <thead>
+        <tr>
+            <th>Voucher ID</th>
+            <th>Valid From</th>
+            <th>Valid To</th>
+            <th>Student Name</th>
+            <th>Mail</th>
+            <th>Bill Amount</th>
+            <th><span id="status">Status</span></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for voucher in page_obj %}
+        <tr>
+            <td>{{ voucher.code }}</td>
+            <td>{{ voucher.start_date }}</td>
+            <td>{{ voucher.end_date }}</td>
+            <td>{{ voucher.created_by.get_full_name }}</td>
+            <td>{{ voucher.created_by.email }}</td>
+            <td>{{ voucher.discount }}</td>
+            <td>{{ voucher.is_active|yesno:"Active,Inactive" }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">No vouchers available.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+    </div>
+<div class="pagination" id="pagination2">
+    <div class="select-page">
+        Select by Page No.:
+        <select id="pageSelect2" onchange="changePage2()">
+            {% for page_num in page_obj.paginator.page_range %}
+            <option value="{{ page_num }}" {% if page_obj.number == page_num %}selected{% endif %}>{{ page_num }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div id="currentPage2">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</div>
+    {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}&sort={{ request.GET.sort }}">Previous</a>
+    {% endif %}
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}&sort={{ request.GET.sort }}">Next</a>
+    {% endif %}
+</div>
+
+</body>
+</html>
