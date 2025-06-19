@@ -1,5 +1,5 @@
 from django import forms
-from .models import *
+from app.models import *
 from django.utils import timezone
 from django.contrib.auth.forms import PasswordChangeForm
 from django.core.exceptions import ValidationError
@@ -208,8 +208,13 @@ class BlogCommentForm(forms.ModelForm):
 
 
 class AssignQuizForm(forms.ModelForm):
-    course = forms.ModelChoiceField(queryset=Course.objects.all(), label="Select Course")
-    quiz = forms.ModelChoiceField(queryset=Quiz.objects.all(), label="Select Quiz")
+    course = forms.ModelChoiceField(queryset=Course.objects.none(), label="Select Course")
+    quiz = forms.ModelChoiceField(queryset=Quiz.objects.none(), label="Select Quiz")
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['course'].queryset = Course.objects.all()
+        self.fields['quiz'].queryset = Quiz.objects.all()
 
 class ResultForm(forms.ModelForm):
     class Meta:
@@ -484,7 +489,7 @@ class Admin_CourseProviderForm(forms.ModelForm):
     password1 = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(widget=forms.PasswordInput)
     gender = forms.ChoiceField(choices=CustomeUser.GENDER_CHOICES, required=True)
-    courses = forms.ModelMultipleChoiceField(queryset=Course.objects.all(), widget=forms.CheckboxSelectMultiple, required=False)
+    courses = forms.ModelMultipleChoiceField(queryset=Course.objects.none(), widget=forms.CheckboxSelectMultiple, required=False)
     account_name = forms.CharField(max_length=100)
     bank_name = forms.CharField(max_length=100)
     account_type = forms.CharField(max_length=50)
@@ -512,6 +517,10 @@ class Admin_CourseProviderForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['courses'].queryset = Course.objects.all()
 
 
 class Admin_PayoutDetailForm(forms.ModelForm):
@@ -550,7 +559,7 @@ class Admin_VoucherForm(forms.ModelForm):
 
 
 class Admin_CreateVoucherForm(forms.ModelForm):
-    courses = forms.ModelMultipleChoiceField(queryset=Course.objects.all(), widget=forms.CheckboxSelectMultiple)
+    courses = forms.ModelMultipleChoiceField(queryset=Course.objects.none(), widget=forms.CheckboxSelectMultiple)
 
     class Meta:
         model = Admin_Voucher
@@ -565,7 +574,7 @@ class Admin_CreateVoucherForm(forms.ModelForm):
         }
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['course'].queryset = Course.objects.all()
+        self.fields['courses'].queryset = Course.objects.all()
 
 class Admin_BlogForm(forms.ModelForm):
     class Meta:
@@ -724,7 +733,7 @@ class Admin_StudentForm(forms.ModelForm):
                                           widget=forms.CheckboxSelectMultiple)
     wishlist = forms.ModelMultipleChoiceField(queryset=Course.objects.all(), required=False,
                                               widget=forms.CheckboxSelectMultiple)
-    ongoing_courses = forms.ModelMultipleChoiceField(queryset=Course.objects.all(), required=False,
+    ongoing_courses = forms.ModelMultipleChoiceField(queryset=Course.objects.none(), required=False,
                                                      widget=forms.CheckboxSelectMultiple)
     completed_courses = forms.ModelMultipleChoiceField(queryset=Course.objects.all(), required=False,
                                                        widget=forms.CheckboxSelectMultiple)
@@ -736,3 +745,9 @@ class Admin_StudentForm(forms.ModelForm):
             'cart', 'wishlist', 'ongoing_courses', 'completed_courses'
         ]
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['cart'].queryset = Course.objects.all()
+        self.fields['wishlist'].queryset = Course.objects.all()
+        self.fields['ongoing_courses'].queryset = Course.objects.all()
+        self.fields['completed_courses'].queryset = Course.objects.all()

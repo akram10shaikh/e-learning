@@ -1,11 +1,11 @@
 from django.contrib.auth import get_user_model, update_session_auth_hash
-from .forms import *
-from .models import *
+from app.forms import *
+from app.models import *
 import random
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import get_object_or_404, redirect
-from .models import Course, Enrollment, QuestionPaper
+from app.models import Course, Enrollment, QuestionPaper
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
@@ -16,10 +16,10 @@ from django.http import HttpResponseBadRequest, FileResponse, HttpResponse
 from django.http import JsonResponse, Http404
 from django.utils import timezone
 from django.urls import reverse
-from .models import BlogPost
-from .forms import BlogPostForm, BlogCommentForm
+from app.models import BlogPost
+from app.forms import BlogPostForm, BlogCommentForm
 from django.http import JsonResponse
-from .models import Course, Message
+from app.models import Course, Message
 import json
 from datetime import datetime
 from decimal import Decimal, InvalidOperation
