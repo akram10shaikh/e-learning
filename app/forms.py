@@ -1,44 +1,35 @@
 from django import forms
 from app.models import *
 from django.utils import timezone
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm as DjangoPasswordChangeForm
 from django.core.exceptions import ValidationError
-
+from django.forms.models import inlineformset_factory
+from django.contrib.auth import get_user_model
+from ckeditor.widgets import CKEditorWidget
+from django.conf import settings
+from datetime import date
 
 class LoginForm(forms.Form):
-    email = forms.EmailField(max_length=255, widget=forms.TextInput(
-        attrs={'placeholder': 'Email'}))
-    password = forms.CharField(max_length=255, widget=forms.PasswordInput(
-        attrs={'placeholder': 'Password'}))
+    email = forms.EmailField(max_length=255, widget=forms.TextInput(attrs={'placeholder': 'Email'}))
+    password = forms.CharField(max_length=255, widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
 
 
 class UserForm(forms.ModelForm):
     class Meta:
-        models = CustomeUser
-        fields = ['username', 'email', 'password', 'user_type']  # Add or remove fields as needed
-
-        labels = {
-            'username': 'Username',
-            'email': 'Email',
-            'password': 'Password',
-            'user_type': 'User Type',
-        }
-        widgets = {
-            'password': forms.PasswordInput(),
-        }
+        model = CustomeUser
+        fields = ['username', 'email', 'password', 'user_type']
+        labels = {'username': 'Username','email': 'Email','password': 'Password','user_type': 'User Type'}
+        widgets = {'password': forms.PasswordInput()}
 
 
 class AdminForm(forms.ModelForm):
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'id': 'id_password1', 'placeholder': 'Create Password'}))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'id': 'id_password2', 'placeholder': 'Re-enter Password'}))
-
-    DOB = forms.DateField(widget=forms.DateInput(
-        attrs={'type': 'date'}))  # Ensure proper widget for DOB FIELD
+    DOB = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
 
     class Meta:
         model = Student
-        fields = ['Full_Name', 'Mobile_no', 'EmailID',
-                  'DOB', 'Gender', 'password1', 'password2']
+        fields = ['Full_Name', 'Mobile_no', 'EmailID', 'DOB', 'Gender', 'password1', 'password2']
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -47,14 +38,15 @@ class AdminForm(forms.ModelForm):
             raise forms.ValidationError("Passwords do not match")
         return password2
 
+
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['bio', 'profile_picture', 'mobile_number', 'language', 'linkedin_profile', 'twitter_profile', 'facebook_profile']
         widgets = {
-            'bio': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Write something...','rows': 2,}),
+            'bio': forms.Textarea(attrs={'class': 'form-control', 'rows': 2}),
             'profile_picture': forms.FileInput(attrs={'class': 'form-control'}),
-            'mobile_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter mobile'}),
+            'mobile_number': forms.TextInput(attrs={'class': 'form-control'}),
             'language': forms.Select(attrs={'class': 'form-control'}),
             'linkedin_profile': forms.URLInput(attrs={'class': 'form-control'}),
             'twitter_profile': forms.URLInput(attrs={'class': 'form-control'}),
@@ -66,12 +58,14 @@ class EmailChangeForm(forms.ModelForm):
     class Meta:
         model = CustomeUser
         fields = ['email']
-        widgets = {
-            'email': forms.EmailInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Enter your new email'
-            })
-        }
+        widgets = {'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your new email'})}
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if CustomeUser.objects.exclude(pk=self.instance.pk).filter(email=email).exists():
+            raise ValidationError("Email already exists.")
+        return email
+
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -83,13 +77,13 @@ class EmailChangeForm(forms.ModelForm):
 from django.contrib.auth.forms import PasswordChangeForm as DjangoPasswordChangeForm
 
 class PasswordChangeForm(DjangoPasswordChangeForm):
-    def __init__(self, *args, **kwargs):
+     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields:
-            self.fields[field].widget.attrs.update({
-                'class': 'form-control',
-                'placeholder': self.fields[field].label
+            self.fields[field].widget.attrs.update({'class': 'form-control', 'placeholder': self.fields[field].label})
+
             })
+
 from datetime import date
 
 MONTH_CHOICES = [(i, f"{i:02}") for i in range(1, 13)]
@@ -215,6 +209,7 @@ class AssignQuizForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['course'].queryset = Course.objects.all()
         self.fields['quiz'].queryset = Quiz.objects.all()
+
 
 class ResultForm(forms.ModelForm):
     class Meta:
@@ -424,38 +419,20 @@ class Admin_FeedbackForm(forms.Form):
 class Admin_VoucherForm(forms.ModelForm):
     class Meta:
         model = Admin_Voucher
-
-        fields = ['code', 'discount', 'expiration_date', 'courses']  #Added Course here
-
+        fields = [
+            'code', 'discount', 'discount_type', 'discount_limit', 'start_date', 'end_date', 'min_amount',
+            'num_courses', 'courses', 'expiration_date'
+        ]
         widgets = {
-            'code': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter voucher code'}),
-            'discount': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Enter discount'}),
-            'expiration_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-           'courses': forms.ModelMultipleChoiceField(queryset=Course.objects.none(), widget=forms.SelectMultiple(attrs={'class': 'form-control'}), required=False),  # Use ModelMultipleChoiceField and SelectMultiple
+            'courses': forms.CheckboxSelectMultiple,
+            'start_date': forms.DateInput(attrs={'type': 'date'}),
+            'end_date': forms.DateInput(attrs={'type': 'date'}),
+            'expiration_date': forms.DateInput(attrs={'type': 'date'}),
         }
 
-        labels = {
-            'code': 'Voucher Code',
-            'discount': 'Discount',
-            'expiration_date': 'Expiration Date',
-            'courses': 'Applicable Courses',
-        }
-
-        help_texts = {
-            'code': 'Unique code for the voucher.',
-            'discount': 'Discount percentage or amount.',
-            'expiration_date': 'Expiration date of the voucher.',
-            #'courses': 'Select courses this voucher applies to.',
-        }
-
-    def clean(self):
-        cleaned_data = super().clean()
-
-        code = cleaned_data.get('code')
-        if Admin_Voucher.objects.filter(code=code).exists():
-            self.add_error('code', 'A voucher with this code already exists.')
-
-        return cleaned_data
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['courses'].queryset = Course.objects.all()
 
 
 class Admin_AffiliateMarketerForm(forms.ModelForm):
@@ -563,6 +540,10 @@ class Admin_VoucherForm(forms.ModelForm):
 class Admin_CreateVoucherForm(forms.ModelForm):
     courses = forms.ModelMultipleChoiceField(queryset=Course.objects.none(), widget=forms.CheckboxSelectMultiple)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['courses'].queryset = Course.objects.all()
+
     class Meta:
         model = Admin_Voucher
         fields = [
@@ -574,9 +555,7 @@ class Admin_CreateVoucherForm(forms.ModelForm):
             'end_date': forms.DateInput(attrs={'type': 'date'}),
             'expiration_date': forms.DateInput(attrs={'type': 'date'}),
         }
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['courses'].queryset = Course.objects.all()
+
 
 class Admin_BlogForm(forms.ModelForm):
     class Meta:
@@ -725,20 +704,10 @@ CustomUser = get_user_model()
 
 
 class Admin_StudentForm(forms.ModelForm):
-    user = forms.ModelChoiceField(queryset=CustomUser.objects.all(), required=True)
-    Full_Name = forms.CharField(max_length=20, required=True)
-    Mobile_no = forms.CharField(max_length=10, required=True)
-    EmailID = forms.EmailField(max_length=255, required=True)
-    DOB = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=True)
-    Gender = forms.ChoiceField(choices=Student.Gender_choices, required=True)
-    cart = forms.ModelMultipleChoiceField(queryset=Course.objects.none(), required=False,
-                                          widget=forms.CheckboxSelectMultiple)
-    wishlist = forms.ModelMultipleChoiceField(queryset=Course.objects.none(), required=False,
-                                              widget=forms.CheckboxSelectMultiple)
-    ongoing_courses = forms.ModelMultipleChoiceField(queryset=Course.objects.none(), required=False,
-                                                     widget=forms.CheckboxSelectMultiple)
-    completed_courses = forms.ModelMultipleChoiceField(queryset=Course.objects.none(), required=False,
-                                                       widget=forms.CheckboxSelectMultiple)
+    cart = forms.ModelMultipleChoiceField(queryset=Course.objects.none(), required=False, widget=forms.CheckboxSelectMultiple)
+    wishlist = forms.ModelMultipleChoiceField(queryset=Course.objects.none(), required=False, widget=forms.CheckboxSelectMultiple)
+    ongoing_courses = forms.ModelMultipleChoiceField(queryset=Course.objects.none(), required=False, widget=forms.CheckboxSelectMultiple)
+    completed_courses = forms.ModelMultipleChoiceField(queryset=Course.objects.none(), required=False, widget=forms.CheckboxSelectMultiple)
 
     class Meta:
         model = Student
