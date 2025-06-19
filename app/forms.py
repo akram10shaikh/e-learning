@@ -534,6 +534,7 @@ class Admin_CourseOwnerEarningsForm(forms.ModelForm):
 
 
 class Admin_VoucherForm(forms.ModelForm):
+    course = forms.ModelChoiceField(queryset=Course.objects.none())
     class Meta:
         model = Admin_Voucher
         fields = [
@@ -562,7 +563,9 @@ class Admin_CreateVoucherForm(forms.ModelForm):
             'end_date': forms.DateInput(attrs={'type': 'date'}),
             'expiration_date': forms.DateInput(attrs={'type': 'date'}),
         }
-
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['course'].queryset = Course.objects.all()
 
 class Admin_BlogForm(forms.ModelForm):
     class Meta:
