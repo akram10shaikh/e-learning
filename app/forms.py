@@ -295,7 +295,7 @@ class Admin_studentForm(forms.ModelForm):
 class Admin_ChangeCourseForm(forms.Form):
     student = forms.ModelChoiceField(queryset=CustomeUser.objects.filter(user_type=2, is_active=True),
                                      label="Select Student")
-    course = forms.ModelChoiceField(queryset=Course.objects.all(), label="Select New Course")
+    course = forms.ModelChoiceField(queryset=Course.objects.none(), label="Select New Course")
 
 
 class Admin_AdminForm(forms.ModelForm):
@@ -431,7 +431,7 @@ class Admin_VoucherForm(forms.ModelForm):
             'code': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter voucher code'}),
             'discount': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Enter discount'}),
             'expiration_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-           'courses': forms.ModelMultipleChoiceField(queryset=Course.objects.all(), widget=forms.SelectMultiple(attrs={'class': 'form-control'}), required=False),  # Use ModelMultipleChoiceField and SelectMultiple
+           'courses': forms.ModelMultipleChoiceField(queryset=Course.objects.none(), widget=forms.SelectMultiple(attrs={'class': 'form-control'}), required=False),  # Use ModelMultipleChoiceField and SelectMultiple
         }
 
         labels = {
@@ -729,13 +729,13 @@ class Admin_StudentForm(forms.ModelForm):
     EmailID = forms.EmailField(max_length=255, required=True)
     DOB = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=True)
     Gender = forms.ChoiceField(choices=Student.Gender_choices, required=True)
-    cart = forms.ModelMultipleChoiceField(queryset=Course.objects.all(), required=False,
+    cart = forms.ModelMultipleChoiceField(queryset=Course.objects.none(), required=False,
                                           widget=forms.CheckboxSelectMultiple)
-    wishlist = forms.ModelMultipleChoiceField(queryset=Course.objects.all(), required=False,
+    wishlist = forms.ModelMultipleChoiceField(queryset=Course.objects.none(), required=False,
                                               widget=forms.CheckboxSelectMultiple)
     ongoing_courses = forms.ModelMultipleChoiceField(queryset=Course.objects.none(), required=False,
                                                      widget=forms.CheckboxSelectMultiple)
-    completed_courses = forms.ModelMultipleChoiceField(queryset=Course.objects.all(), required=False,
+    completed_courses = forms.ModelMultipleChoiceField(queryset=Course.objects.none(), required=False,
                                                        widget=forms.CheckboxSelectMultiple)
 
     class Meta:
