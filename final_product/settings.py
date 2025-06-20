@@ -147,17 +147,12 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # Points to the development static folder
-]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # For collectstatic in production
 
 
-
-#STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-#STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
